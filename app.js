@@ -7,7 +7,8 @@ const compression = require('compression');
 app.use(compression()); // gzip压缩
 
 // 托管资源文件
-app.use(express.static('dist'));
+const ms = require('ms'); // 转成毫秒数
+app.use(express.static('dist', {maxAge: ms('1y')})); // 托管资源文件(一年缓存)
 
 // 404
 app.use(function (req, res, next) {
