@@ -1,6 +1,7 @@
 {
     "apps": [
         {
+            "name": "shopex-sign",
             "script": "app.js",
             "exec_mode": "fork",
             "ignore_watch": [
