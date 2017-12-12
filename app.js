@@ -19,6 +19,9 @@ app.set('view cache', true);
 // 托管资源文件
 app.use(express.static('assets'));
 
+// 路由
+require('./routes/route')(app);
+
 // 404
 app.use(function (req, res, next) {
     res.status(404).send('404 - not found');

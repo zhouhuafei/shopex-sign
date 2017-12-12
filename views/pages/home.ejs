@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../commons/head.ejs %>
+        <link rel="stylesheet" href="/css/commons/common.css">
+        <style>
+            .title {
+                font-size: 18px;
+                line-height: 60px;
+                text-align: center;
+            }
+
+            .gap {
+                margin-bottom: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="g-wrap">
+            <% include ../commons/header.ejs %>
+            <div class="g-body">
+                <div class="title">hello world</div>
+                <div class="gap">
+                    <label class="g-input g-clear-fix">
+                        <span>账号 : </span>
+                        <input list="userList" type="tel" placeholder="格式 : S6666">
+                        <datalist id="userList">
+                            <option value="S2113">
+                            <option value="S2559">
+                            <option value="S2896">
+                            <option value="S2995">
+                        </datalist>
+                    </label>
+                </div>
+                <div class="gap">
+                    <label class="g-input g-clear-fix">
+                        <span>密码 : </span>
+                        <input type="text" placeholder="默认 : Shopex123">
+                    </label>
+                </div>
+                <div class="g-button">签到</div>
+            </div>
+            <% include ../commons/footer.ejs %>
+        </div>
+    </body>
+</html>
