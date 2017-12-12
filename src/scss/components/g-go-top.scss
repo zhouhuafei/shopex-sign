@@ -1,0 +1,26 @@
+@import "../config/config";
+
+//返回顶部
+.g-go-top {
+    $width-height: 30;
+    position: fixed;
+    left: 50%;
+    margin-left: 5rem -  px2rem($width-height + 10);
+    bottom: px2rem(60);
+    width: px2rem($width-height);
+    height: px2rem($width-height);
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: px2rem(20);
+    color: #ffffff;
+    border-radius: px2px(4);
+    transition: opacity 0.4s;
+    z-index: -2;
+    opacity: 0;
+    &.g-go-top-active {
+        opacity: 1;
+        z-index: 2;
+    }
+}

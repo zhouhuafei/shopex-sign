@@ -1,0 +1,29 @@
+@import "../config/config";
+
+//按钮
+.g-button {
+    height: px2rem(40);
+    background: $g-highlight-color;
+    color: #fff;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .g-button-icon {
+        font-size: px2rem(20);
+        margin: 0 px2rem(2);
+    }
+    .g-button-text {
+        margin: 0 px2rem(2);
+    }
+    //取消
+    &.g-button-cancel {
+        background: $g-background-color-default;
+    }
+    //禁用
+    &.g-button-disable {
+        background: $g-background-color-disabled;
+        color: $g-font-color-disabled;
+        cursor: not-allowed;
+    }
+}

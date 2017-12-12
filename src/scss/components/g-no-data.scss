@@ -1,0 +1,27 @@
+@import "../config/config";
+
+//没有数据
+.g-no-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: px2rem(20) 0;
+    .g-no-data-icon {
+        $width-height: 60;
+        width: px2rem($width-height);
+        height: px2rem($width-height);
+        font-size: px2rem($width-height);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: px2rem(20);
+    }
+    .g-no-data-text {
+        font-size: px2rem(16);
+        margin-bottom: px2rem(20);
+    }
+    .g-no-data-button {
+        width: 50%;
+    }
+}

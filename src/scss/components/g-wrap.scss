@@ -1,0 +1,73 @@
+@import "../config/config";
+
+//全局的容器
+.g-wrap {
+    width: 100%;
+    position: relative;
+    .g-header {
+        position: relative;
+        width: inherit;
+        // 二维码(扫码手机观看)
+        .g-qr-code {
+            display: none;
+        }
+    }
+    .g-body {
+        position: relative;
+        width: inherit;
+        &:before, &:after {
+            content: ' ';
+            display: block;
+            height: 0;
+            overflow: hidden;
+        }
+    }
+    .g-footer {
+        position: relative;
+        width: inherit;
+    }
+}
+
+//pc展示
+html.g-pc {
+    height: 100%;
+    body {
+        height: inherit;
+        background: #fafafa;
+    }
+    .g-wrap {
+        $width-wrap: 414;
+        min-height: 100%;
+        margin: 0 auto;
+        width: px2px($width-wrap);
+        box-shadow: px2px(1) 0 px2px(4) $g-border-color-default, px2px(-1) 0 px2px(4) $g-border-color-default;
+        .g-header {
+            // 二维码(扫码手机观看)
+            .g-qr-code {
+                $width: 144;
+                display: block;
+                padding: px2px(20);
+                background: #fff;
+                border: px2px(1) solid $g-border-color-default;
+                position: fixed;
+                top: px2px(20);
+                left: 50%;
+                margin-left: px2px(- 20 - $width - $width-wrap/2);
+                font-size: px2px(12);
+                .g-qr-code-text {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .g-qr-code-svg {
+                    $width-height: 102;
+                    width: px2px($width-height);
+                    height: px2px($width-height);
+                    svg {
+                        vertical-align: middle;
+                    }
+                }
+            }
+        }
+    }
+}

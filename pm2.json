@@ -5,7 +5,7 @@
             "script": "app.js",
             "exec_mode": "fork",
             "ignore_watch": [
-                "assets",
+                "src",
                 "dist",
                 "dist-no-delete-assets-no-cache",
                 "vue"

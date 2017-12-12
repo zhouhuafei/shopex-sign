@@ -1,0 +1,110 @@
+@import "../config/config";
+
+.g-dialog {
+    z-index: 505;
+    &.g-dialog-alert {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: px2rem(280);
+        padding: px2rem(16);
+        border-radius: px2rem(4);
+        box-sizing: border-box;
+        background: rgba(0, 0, 0, 0.8);
+        .g-dialog-alert-close {
+            position: absolute;
+            right: px2px(4);
+            top: px2px(4);
+            color: #ffffff;
+            font-size: px2px(12);
+        }
+        .g-dialog-alert-icon {
+            margin-right: px2rem(10);
+            font-size: px2rem(24);
+        }
+        .g-dialog-alert-text {
+            color: #ffffff;
+            font-size: px2rem(14);
+            line-height: 1.2;
+        }
+
+    }
+    &.g-dialog-confirm {
+        $height: 40;
+        $width: 260;
+        background: #fff;
+        .g-dialog-confirm-header {
+            background: $g-highlight-color;
+            color: #ffffff;
+            height: px2rem($height);
+            box-sizing: border-box;
+            padding-left: px2rem(10);
+            padding-right: px2rem($height);
+            display: flex;
+            align-items: center;
+            text-align: justify;
+            overflow: hidden;
+        }
+        .g-dialog-confirm-body {
+            .g-dialog-confirm-body-system {
+                width: px2rem($width);
+                min-height: px2rem($width / 3.2);
+                padding: px2rem(10);
+                @include xy-center-flex;
+                .g-dialog-confirm-body-system-icon {
+                    margin-right: px2rem(6);
+                    font-size: px2rem(24);
+                }
+                .g-dialog-confirm-body-system-text {
+                    font-size: px2rem(14);
+                    line-height: 1.2;
+                }
+            }
+            .g-dialog-confirm-body-custom {
+            }
+        }
+        .g-dialog-confirm-footer {
+            display: flex;
+            .g-dialog-confirm-footer-cancel, .g-dialog-confirm-footer-confirm {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: px2rem($height);
+                width: auto;
+            }
+        }
+        .g-dialog-confirm-close {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: px2rem($height);
+            height: px2rem($height);
+            font-size: px2rem(14);
+            color: #ffffff;
+            @include xy-center-flex;
+        }
+    }
+    &.g-dialog-center {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    &.g-dialog-bottom {
+        width: 100%;
+        border-radius: 0;
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    &.g-dialog-top {
+        width: 100%;
+        border-radius: 0;
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

@@ -1,0 +1,126 @@
+@import "../config/config";
+
+.g-font-color-success {
+    color: $g-success-color;
+}
+
+.g-font-color-warning {
+    color: $g-warning-color;
+}
+
+.g-font-color-danger {
+    color: $g-danger-color;
+}
+
+/* 工具样式 */
+.g-display-none {
+    display: none !important;
+}
+
+.g-display-block {
+    display: block !important;
+}
+
+.g-display-flex {
+    display: flex !important;
+}
+
+.g-flex-1 {
+    flex: 1;
+}
+
+.g-justify-content-center {
+    justify-content: center;
+}
+
+.g-align-items-center {
+    align-items: center;
+}
+
+.g-float-left {
+    float: left;
+}
+
+.g-float-right {
+    float: right;
+}
+
+// 清除浮动
+.g-clear-fix {
+    &:after {
+        content: '';
+        clear: both;
+        display: block;
+        height: 0;
+        overflow: hidden;
+    }
+}
+
+// 文字超出显示省略号
+.g-text-ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* 水平垂直居中 - 伪类 */
+.g-xy-center-sham {
+    font-size: 0;
+    text-align: center;
+    & > :nth-child(n) {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    &:before {
+        content: '';
+        height: 100%;
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
+
+/* 水平垂直居中 - flex */
+.g-xy-center-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    word-break: break-all;
+}
+
+/* 系列 - 0 */
+.g-margin-top-0 {
+    margin-top: 0 !important;
+}
+
+.g-margin-right-0 {
+    margin-right: 0 !important;
+}
+
+.g-margin-bottom-0 {
+    margin-bottom: 0 !important;
+}
+
+.g-margin-left-0 {
+    margin-left: 0 !important;
+}
+
+.g-padding-top-0 {
+    padding-top: 0 !important;
+}
+
+.g-padding-right-0 {
+    padding-right: 0 !important;
+}
+
+.g-padding-bottom-0 {
+    padding-bottom: 0 !important;
+}
+
+.g-padding-left-0 {
+    padding-left: 0 !important;
+}
+
+.g-text-indent-0 {
+    text-indent: 0 !important;
+}

@@ -1,0 +1,19 @@
+@import "../config/config";
+
+//快捷入口
+.g-quick-enter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-size: px2rem(12);
+    overflow: hidden;
+    .g-quick-enter-btn {
+        color: $g-ignore-color;
+        padding: px2rem(4) px2rem(6);
+        border: px2px(1) solid $g-border-color-default;
+        margin: px2rem(2);
+        background: #ffffff;
+        border-radius: px2rem(2000);
+    }
+}

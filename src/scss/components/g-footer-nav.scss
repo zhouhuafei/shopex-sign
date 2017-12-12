@@ -1,0 +1,57 @@
+@import "../config/config";
+
+//底部导航
+.g-footer-nav {
+    $height: 44;
+    width: inherit;
+    height: px2rem($height);
+    .g-footer-nav-body {
+        width: inherit;
+        height: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        z-index: 3;
+        bottom: px2px(-1);
+        box-sizing: border-box;
+        border-top: px2px(1) solid $g-border-color-default;
+        background: #fff;
+        .g-footer-nav-item {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+            height: 100%;
+            color: $g-font-color-default;
+            .g-footer-nav-item-icon {
+                $size: 20;
+                width: px2rem($size);
+                height: px2rem($size);
+                font-size: px2rem($size);
+            }
+            .g-footer-nav-item-text {
+                line-height: 1;
+                font-size: px2rem(12);
+                margin-top: px2rem(4);
+            }
+            .g-footer-nav-item-mark {
+                $width-height: 6;
+                width: px2rem($width-height);
+                height: px2rem($width-height);
+                border-radius: 50%;
+                background: $g-highlight-color;
+                position: absolute;
+                right: px2rem(4);
+                top: px2rem(4);
+            }
+            &.g-footer-nav-item-active {
+                .g-footer-nav-item-icon, .g-footer-nav-item-text {
+                    color: $g-highlight-color;
+                }
+            }
+        }
+    }
+}

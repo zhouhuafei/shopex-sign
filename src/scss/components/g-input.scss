@@ -1,0 +1,62 @@
+@import "../config/config";
+
+//输入框
+.g-input {
+    $height: 40;
+    width: 100%;
+    height: px2rem($height);
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: px2px(1) solid $g-border-color-default;
+    border-left: none;
+    border-right: none;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: px2rem(0);
+    .g-input-text {
+        min-width: px2rem($height);
+        padding: 0 px2rem(10);
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        & ~ .g-input-input {
+            border-left: px2px(1) solid $g-border-color-default;
+        }
+        .g-input-icon {
+            font-size: inherit;
+        }
+    }
+    .g-input-icon {
+        font-size: px2rem(12);
+        padding: 0 px2rem(2);
+        & ~ .g-input-input {
+            border-left: px2px(1) solid $g-border-color-default;
+        }
+    }
+    .g-input-hint {
+        font-size: px2rem(12);
+        padding: 0 px2rem(2);
+        color: $g-danger-color;
+        & ~ .g-input-input {
+            border-left: px2px(1) solid $g-border-color-default;
+        }
+    }
+    .g-input-input {
+        min-width: px2rem(50);
+        border: none;
+        -webkit-appearance: none;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        outline: none;
+        color: inherit;
+        font-size: inherit;
+        flex: 1;
+        height: 100%;
+        background: inherit;
+        border-radius: inherit;
+        box-sizing: border-box;
+        padding: 0 px2rem(10);
+    }
+}

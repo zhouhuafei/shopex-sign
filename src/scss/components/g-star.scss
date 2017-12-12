@@ -1,0 +1,17 @@
+@import "../config/config";
+
+.g-star {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    font-size: 0;
+    height: px2rem(40);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .g-star-items {
+        color: $g-ignore-color;
+        font-size: px2rem(36);
+        &.g-star-items-active {
+            color: $g-highlight-color;
+        }
+    }
+}

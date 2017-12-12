@@ -1,0 +1,35 @@
+@import "../config/config";
+
+.g-table {
+    color: $g-font-color-default;
+    text-align: center;
+    background: #fff;
+    .g-table-row {
+        display: flex;
+        min-height: px2rem(44);
+        border-bottom: px2px(1) solid $g-border-color-default;
+        &:hover {
+            background: $g-highlight-color;
+            color: #ffffff;
+        }
+        .g-table-col {
+            position: relative;
+            flex: 1;
+            .g-table-col-wrap {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                word-break: break-all;
+                padding: px2rem(4);
+                box-sizing: border-box;
+            }
+        }
+    }
+    .g-table-header {
+        background: $g-highlight-color;
+        color: #ffffff;
+        border-top: px2px(1) solid $g-border-color-default;
+    }
+}

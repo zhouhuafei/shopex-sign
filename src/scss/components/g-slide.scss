@@ -1,0 +1,51 @@
+@import "../config/config";
+
+.g-slide {
+    background: #fff;
+    min-height: px2rem(50);
+    height: inherit;
+    position: relative;
+    overflow: hidden;
+    .tempWrap {
+        height: inherit;
+    }
+    .g-slide-body {
+        height: inherit;
+        display: flex;
+        .g-slide-items {
+            height: inherit;
+            flex: 1;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            background: center center no-repeat;
+            background-size: 100% auto;
+            transition: 0.4s;
+            //&.on {
+            //    transform: rotate(-30deg);
+            //}
+        }
+    }
+    .g-slide-header {
+        $height: 14;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        z-index: 2;
+        height: px2rem($height);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .g-slide-items {
+            margin: 0 px2rem(4);
+            background-color: $g-background-color-default;
+            width: px2rem($height / 2);
+            height: px2rem($height / 2);
+            border-radius: 50%;
+            &.on {
+                background-color: $g-highlight-color;
+            }
+        }
+    }
+}

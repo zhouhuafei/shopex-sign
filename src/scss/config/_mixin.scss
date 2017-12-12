@@ -1,0 +1,47 @@
+//清除浮动
+@mixin clear-fix() {
+    &:after {
+        content: '';
+        clear: both;
+        display: block;
+        height: 0;
+        overflow: hidden;
+    }
+}
+
+//垂直水平居中(伪类)
+@mixin xy-center-sham() {
+    font-size: 0;
+    text-align: center;
+    & > :nth-child(n) {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    &:before {
+        content: '';
+        height: 100%;
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
+
+//垂直水平居中(flex)
+@mixin xy-center-flex() {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    word-break: break-all;
+}
+
+//省略号
+@mixin text-ellipsis($lineClamp:1, $lineHeight:1) {
+    line-height: $lineHeight;
+    height: $lineHeight * $lineClamp;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: $lineClamp;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal;
+}

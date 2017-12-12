@@ -1,0 +1,47 @@
+@import "../config/config";
+
+.g-radio-switch {
+    $width-wrap: 44;
+    $height-wrap: $width-wrap / 2;
+    $width-height-round: $height-wrap - 2;
+    $top-round: 1;
+    $left-round: 1;
+    $left-round-active: $width-wrap - $width-height-round - $left-round;
+    height: px2rem($height-wrap);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    .g-radio-switch-wrap {
+        width: px2rem($width-wrap);
+        height: inherit;
+        border-radius: px2rem($width-wrap);
+        position: relative;
+        background: $g-background-color-default;
+        .g-radio-switch-round {
+            width: px2rem($width-height-round);
+            height: px2rem($width-height-round);
+            border-radius: 50%;
+            transition: 0.4s;
+            background: #ffffff;
+            position: absolute;
+            left: px2rem($left-round);
+            top: px2rem($top-round);
+        }
+    }
+    .g-radio-switch-text {
+        margin-left: px2rem(4);
+    }
+    &.g-radio-switch-active {
+        .g-radio-switch-wrap {
+            background: $g-highlight-color;
+            .g-radio-switch-round {
+                left: px2rem($left-round-active);
+            }
+        }
+        .g-radio-switch-text {
+            color: $g-highlight-color;
+        }
+    }
+}

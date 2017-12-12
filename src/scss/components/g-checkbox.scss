@@ -1,0 +1,51 @@
+@import "../config/config";
+
+//多选框
+.g-checkbox {
+    $height: 20;
+    height: px2rem($height);
+    display: flex;
+    align-items: center;
+    .g-checkbox-wrap {
+        width: px2rem($height);
+        height: 100%;
+        border-radius: px2rem(4);
+        background: #ffffff;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .g-checkbox-checkbox {
+            -webkit-appearance: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            outline: none;
+            width: inherit;
+            height: inherit;
+            background: inherit;
+            border-radius: inherit;
+            border: px2px(1) solid $g-border-color-default;
+            &:checked {
+                border-color: $g-highlight-color;
+                & + .g-checkbox-mark {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+        }
+        .g-checkbox-mark {
+            color: $g-highlight-color;
+            font-size: px2rem(16);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: inherit;
+            height: inherit;
+            display: none;
+        }
+    }
+    .g-checkbox-text {
+        line-height: 1;
+        margin-left: px2rem(10);
+    }
+}

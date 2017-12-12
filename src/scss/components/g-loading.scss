@@ -1,0 +1,107 @@
+@import "../config/config";
+/*加载更多的底部加载中*/
+.g-loading {
+    width: inherit;
+    @keyframes run {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    .g-loading-body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        color: $g-font-color-default;
+        padding: px2rem(20) 0;
+        box-sizing: border-box;
+    }
+    //加载中
+    &.g-loading-run {
+        .g-loading-run-icon {
+            font-size: px2rem(30);
+            animation: run 1s linear infinite;
+        }
+        //相对于文档居中
+        &.g-loading-fixed {
+            .g-loading-body {
+                position: fixed;
+                width: inherit;
+                z-index: 501;
+            }
+            &.g-loading-top {
+                .g-loading-body {
+                    top: 0;
+                }
+            }
+            &.g-loading-center {
+                .g-loading-body {
+                    top: 0;
+                    height: 100%;
+                }
+            }
+            &.g-loading-bottom {
+                .g-loading-body {
+                    bottom: 0;
+                }
+            }
+        }
+        //相对于容器居中
+        &.g-loading-absolute {
+            .g-loading-body {
+                position: absolute;
+                left: 0;
+                width: 100%;
+                z-index: 501;
+            }
+            &.g-loading-top {
+                .g-loading-body {
+                    top: 0;
+                }
+            }
+            &.g-loading-center {
+                .g-loading-body {
+                    top: 0;
+                    height: 100%;
+                }
+            }
+            &.g-loading-bottom {
+                .g-loading-body {
+                    bottom: 0;
+                }
+            }
+        }
+    }
+
+    //加载完毕
+    &.g-loading-over {
+        .g-loading-over-icon {
+            font-size: px2rem(24);
+        }
+        .g-loading-over-text {
+            font-size: px2rem(12);
+        }
+        &.g-loading-fixed {
+            .g-loading-body {
+                position: fixed;
+                top: 0;
+                width: inherit;
+                height: 100%;
+                z-index: 501;
+            }
+        }
+        &.g-loading-absolute {
+            .g-loading-body {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 501;
+            }
+        }
+    }
+}

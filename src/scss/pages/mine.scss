@@ -1,0 +1,48 @@
+@import "../config/config";
+
+.g-body {
+    .page-header {
+        background: #fff;
+        margin-bottom: px2rem(10);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: px2rem(10);
+        .page-header-wrap {
+            display: flex;
+            align-items: flex-end;
+            .page-header-photo {
+                $width-height: 80;
+                width: px2rem($width-height);
+                height: px2rem($width-height);
+                border: px2px(1) solid $g-highlight-color;
+                border-radius: px2rem(10);
+                margin-right: px2rem(10);
+                overflow: hidden;
+                @include xy-center-flex;
+                img {
+                    max-width: 100%;
+                    max-height: 100%;
+                }
+            }
+            .page-header-info {
+                max-width: px2rem(194);
+                overflow: hidden;
+                .page-header-info-item {
+                    text-align: justify;
+                    .page-header-info-item-desc {
+                        color: $g-highlight-color;
+                    }
+                    .page-header-info-item-info {
+                    }
+                }
+            }
+        }
+    }
+    .g-list {
+        margin-bottom: px2rem(10);
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}

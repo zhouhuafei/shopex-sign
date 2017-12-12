@@ -1,6 +1,6 @@
 {
     "ignore": [
-        "assets",
+        "src",
         "dist",
         "dist-no-delete-assets-no-cache",
         "vue"

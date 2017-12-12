@@ -1,0 +1,104 @@
+@import "../config/config";
+
+/* 盒模型重置 */
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+/* 主体重置 */
+body {
+    margin: 0;
+    font-family: "微软雅黑", "Helvetica", "Arial", "sans-serif";
+    font-size: px2rem(12);
+    line-height: 1.5;
+    color: $g-font-color-default;
+    background: $g-background-color-floor;
+}
+
+/* 标题重置 */
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-size: inherit;
+    font-weight: normal;
+}
+
+/* 列表重置 */
+ul, ol {
+    margin: 0;
+    padding: 0;
+}
+
+dl, dd {
+    margin: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+/* 表单重置 */
+label {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+textarea {
+    resize: none;
+}
+
+input[type=radio], input[type=checkbox], input[type=text], input[type=password], input[type=tel], input[type=number], input[type=email], input[type=url], input[type=time], input[type=date], input[type=datetime-local], input[type=month], input[type=week], input[type=color], textarea, select {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    border: 1px solid #9b9b9b;
+    outline: none;
+    color: inherit;
+    line-height: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+input[type=radio], input[type=checkbox] {
+    border: none;
+}
+
+input[type=submit], input[type=reset], input[type=file], input[type=button], button {
+    outline: none;
+    color: inherit;
+    line-height: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* 表格重置 */
+table {
+    border-collapse: collapse;
+}
+
+td {
+    padding: 0;
+}
+
+/* 超链接重置 */
+a {
+    color: inherit;
+    outline: none;
+    text-decoration: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* 段落重置 */
+p {
+    margin: 0;
+}
+
+/* 图片重置 */
+img {
+    border: none;
+    vertical-align: middle;
+    max-width: 10rem;
+}

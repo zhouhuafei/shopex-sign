@@ -1,0 +1,13 @@
+@import "../config/config";
+
+//延迟加载默认状态
+.g-lazy-load {
+    transition: opacity 0.4s;
+    opacity: 0;
+}
+
+//延迟加载活跃状态
+.g-lazy-load-active {
+    transition: opacity 0.4s;
+    opacity: 1;
+}

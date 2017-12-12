@@ -1,0 +1,41 @@
+@import "../config/config";
+
+.g-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    background: #ffffff;
+    .g-navigation-item {
+        $width-height: 64;
+        width: px2rem($width-height);
+        height: px2rem($width-height);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        box-sizing: border-box;
+        position: relative;
+        .g-navigation-icon {
+            $width-height: 24;
+            width: px2rem($width-height);
+            height: px2rem($width-height);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: px2rem($width-height);
+            color: $g-highlight-color;
+        }
+        .g-navigation-text {
+            font-size: px2rem(12);
+        }
+        .g-navigation-mark {
+            $width-height: 6;
+            width: px2rem($width-height);
+            height: px2rem($width-height);
+            border-radius: 50%;
+            background: $g-highlight-color;
+            position: absolute;
+            right: px2rem(4);
+            top: px2rem(4);
+        }
+    }
+}

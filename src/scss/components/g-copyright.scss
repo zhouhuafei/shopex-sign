@@ -1,0 +1,16 @@
+@import "../config/config";
+
+//版权
+.g-copyright {
+    padding: px2rem(20) 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .g-copyright-icon {
+        font-size: px2rem(40);
+    }
+    .g-copyright-text {
+        padding: 0 px2px(6);
+        font-size: px2rem(12);
+    }
+}
