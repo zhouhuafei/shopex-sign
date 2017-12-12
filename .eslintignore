@@ -1,0 +1,6 @@
+node_modules
+fonts
+dist
+/dist-no-delete-assets-no-cache/
+/app/phone/assets/js/plugs/
+/app/phone/assets/libs/

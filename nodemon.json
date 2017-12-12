@@ -1,0 +1,12 @@
+{
+    "ignore": [
+        "app/phone/assets",
+        "dist",
+        "dist-no-delete-assets-no-cache",
+        "vue"
+    ],
+    "verbose": true,
+    "env": {
+        "NODE_ENV": "development"
+    }
+}

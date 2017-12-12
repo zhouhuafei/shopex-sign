@@ -1,0 +1,41 @@
+{
+    "name": "shopex-sign",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "codeLint": "eslint --ext .js,.vue,.html ./",
+        "codeFix": "eslint --fix --ext .js,.vue,.html ./",
+        "serverDev": "nodemon app.js",
+        "serverStart": "pm2 start pm2.json",
+        "serverStop": "pm2 stop all",
+        "serverRestart": "pm2 restart all",
+        "serverReload": "pm2 reload all",
+        "serverSave": "pm2 save",
+        "serverStartup": "pm2 startup"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/zhouhuafei/shopex-sign.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/zhouhuafei/shopex-sign/issues"
+    },
+    "homepage": "https://github.com/zhouhuafei/shopex-sign#readme",
+    "dependencies": {
+        "axios": "^0.16.2",
+        "express": "^4.16.2"
+    },
+    "devDependencies": {
+        "babel-eslint": "^8.0.2",
+        "eslint": "^4.11.0",
+        "eslint-config-standard": "^10.2.1",
+        "eslint-plugin-html": "^3.2.2",
+        "eslint-plugin-import": "^2.8.0",
+        "eslint-plugin-node": "^5.2.1",
+        "eslint-plugin-promise": "^3.6.0",
+        "eslint-plugin-standard": "^3.0.1"
+    }
+}

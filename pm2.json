@@ -1,0 +1,18 @@
+{
+    "apps": [
+        {
+            "script": "app.js",
+            "exec_mode": "fork",
+            "ignore_watch": [
+                "app/phone/assets",
+                "dist",
+                "dist-no-delete-assets-no-cache",
+                "vue"
+            ],
+            "watch": true,
+            "env": {
+                "NODE_ENV": "production"
+            }
+        }
+    ]
+}
