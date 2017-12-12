@@ -13,9 +13,12 @@ const routes = [
             isValidateLogin: false,
         },
         component: function (resolve) {
+            require(['../views/logs.vue'], resolve);
+            /*
             require.ensure([], function () {
                 resolve(require('../views/logs.vue'));
             }, 'logs');
+            */
         },
     },
     // 签到
