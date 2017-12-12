@@ -1,6 +1,6 @@
 {
     "ignore": [
-        "app/phone/assets",
+        "assets",
         "dist",
         "dist-no-delete-assets-no-cache",
         "vue"
