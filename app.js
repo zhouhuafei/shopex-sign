@@ -86,8 +86,24 @@ app.post('/api/', function (req, res) {
                 const ajaxData = {
                     method: 'checkin',
                     latlng: '31.168059, 121.417951',
-                    addr: '%E4%B8%8A%E6%B5%B7%E5%B8%82%E5%BE%90%E6%B1%87%E5%8C%BA%E6%A1%82%E6%9E%97%E8%B7%AF%E9%9D%A0%E8%BF%91%E4%B8%AD%E6%A0%B8%E6%B5%A6%E5%8E%9F%E7%A7%91%E6%8A%80%E5%9B%AD',
+                    // addr: '%E4%B8%8A%E6%B5%B7%E5%B8%82%E5%BE%90%E6%B1%87%E5%8C%BA%E6%A1%82%E6%9E%97%E8%B7%AF%E9%9D%A0%E8%BF%91%E4%B8%AD%E6%A0%B8%E6%B5%A6%E5%8E%9F%E7%A7%91%E6%8A%80%E5%9B%AD',
+                    addr: '上海市徐汇区桂林路靠近中核浦原科技园',
                     sessionkey: data.sessionkey,
+                    isneedmoulds: 1,
+                    client: 1,
+                    clientver: '6.5.29',
+                    udid: '990007181198638',
+                    token: '',
+                    clientos: 'MXB48T',
+                    clientosver: '6.0.1',
+                    clienttype: 'android',
+                    language: 'zh',
+                    country: 'CN',
+                    authcode: '',
+                    dynapass: '',
+                    tokenpass: '',
+                    relogin: 0,
+                    clientuserid: '',
                 };
                 if (power === 'signIn') { // 签到
                     ajaxData.type = 'checkin';
@@ -105,6 +121,7 @@ app.post('/api/', function (req, res) {
                     }).then(function (axiosData) {
                         const data = axiosData.data;
                         if (!data.error) {
+
                         } else {
                             fnFailure(data);
                         }
