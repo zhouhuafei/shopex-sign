@@ -15,6 +15,22 @@ app.use(compression()); // gzip压缩
 const ms = require('ms'); // 转成毫秒数
 app.use(express.static('dist', {maxAge: ms('1y')})); // 托管资源文件(一年缓存)
 
+// cookie以及session
+// const cookieParser = require('cookie-parser'); // cookie数据解析
+// const session = require('express-session'); // session
+// const RedisStore = require('connect-redis')(session); // session存redis
+// const secret = 'suibianxiexie'; // sessionID cookie的密钥
+// app.use(cookieParser(secret)); // cookie
+// app.use(session({
+//     resave: false, // 是指每次请求都重新设置session cookie，假设你的cookie是10分钟过期，每次请求都会再设置10分钟
+//     saveUninitialized: false, // 是指无论有没有session cookie，每次请求都设置个session cookie ，默认给个标示为 connect.sid
+//     secret: secret, // 用于签署sessionID cookie的密钥
+//     cookie: {
+//         maxAge: ms('7 days'), // cookie过期时间
+//     },
+//     store: new RedisStore(configRedis), // session存redis
+// }));
+
 // 接口
 const axios = require('axios');
 const qs = require('qs');
@@ -65,6 +81,7 @@ app.post('/api/', function (req, res) {
             }),
         }).then(function (axiosData) {
             const data = axiosData.data;
+            console.log('login data:', data);
             if (!data.error) {
                 const ajaxData = {
                     method: 'checkin',
@@ -74,7 +91,6 @@ app.post('/api/', function (req, res) {
                 };
                 if (power === 'signIn') { // 签到
                     ajaxData.type = 'checkin';
-                    console.log('签到ajaxData', ajaxData);
                     // axios({
                     //     url: url,
                     //     method: 'post',
@@ -82,7 +98,6 @@ app.post('/api/', function (req, res) {
                     // });
                 } else if (power === 'signOut') { // 签退
                     ajaxData.type = 'checkout';
-                    console.log('签退ajaxData', ajaxData);
                     axios({
                         url: url,
                         method: 'post',
@@ -93,7 +108,7 @@ app.post('/api/', function (req, res) {
                         } else {
                             fnFailure(data);
                         }
-                        console.log('signOut data', data);
+                        console.log('signOut data:', data);
                     }).catch(fnError);
                 } else {
                     res.json(dataInfo);
