@@ -68,7 +68,7 @@
                         url: '/api/',
                         type: 'post',
                         data: {
-                            method: str,
+                            power: str,
                             username: self.username,
                             password: self.password || 'Shopex123',
                         },
