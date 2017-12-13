@@ -2,6 +2,11 @@
 const express = require('express');
 const app = express();
 
+// 数据解析
+const bodyParser = require('body-parser'); // 可以对post delete update请求方式进行数据解析
+app.use(bodyParser.urlencoded({extended: false})); // parse application/x-www-form-urlencoded
+app.use(bodyParser.json()); // parse application/json
+
 // gzip压缩
 const compression = require('compression');
 app.use(compression()); // gzip压缩
@@ -9,6 +14,12 @@ app.use(compression()); // gzip压缩
 // 托管资源文件
 const ms = require('ms'); // 转成毫秒数
 app.use(express.static('dist', {maxAge: ms('1y')})); // 托管资源文件(一年缓存)
+
+// 接口
+app.post('/api/', function (req, res) {
+    console.log(req.body);
+    res.json({a: '1', b: '2'});
+});
 
 // 404
 app.use(function (req, res, next) {
@@ -20,12 +31,6 @@ app.use(function (err, req, res, next) {
     if (err) {
         res.status(500).send(`500 - server error\n${err}`);
     }
-});
-
-// 接口
-app.post('/api/', function (req, res) {
-    console.log(req.body);
-    res.json({a: '1', b: '2'});
 });
 
 // 服务
