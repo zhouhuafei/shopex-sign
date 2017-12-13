@@ -48,7 +48,7 @@ module.exports = function (json) {
             new Dialog({
                 config: {
                     alert: {
-                        content: `失败: ${dataInfo.message}`,
+                        content: `${dataInfo.message}`,
                     },
                 },
             });
