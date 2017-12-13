@@ -24,9 +24,14 @@
                 <span class="g-input-icon iconfont" :class="{'icon-zhengyan':isShowPassword,'icon-biyan':!isShowPassword}" @click="fnIsShowPassword"></span>
             </label>
         </div>
-        <div class="page-button">
-            <div class="g-button" :class="{'g-button-cancel':isSign}" @click="fnSignIn">
+        <div class="page-button" v-if="this.$route.name === 'signIn'">
+            <div class="g-button" :class="{'g-button-cancel':isSign}" @click="fnSign('signIn')">
                 <div class="g-button-text">签到</div>
+            </div>
+        </div>
+        <div class="page-button" v-else>
+            <div class="g-button" :class="{'g-button-cancel':isSign}" @click="fnSign('signOut')">
+                <div class="g-button-text">签退</div>
             </div>
         </div>
     </div>
@@ -39,7 +44,7 @@
     let validateFormHint = null;
     export default {
         name: 'sign-in',
-        data() {
+        data () {
             return {
                 username: '',
                 password: 'Shopex123',
@@ -48,22 +53,24 @@
             };
         },
         methods: {
-            fnIsShowPassword() {
+            fnIsShowPassword () {
                 this.isShowPassword = !this.isShowPassword;
             },
-            fnClear(opt) {
-                this[opt] = '';
+            fnClear (str) {
+                this[str] = '';
             },
-            fnSignIn() {
+            fnSign (str) {
                 const self = this;
                 validateFormHint.validateSave();
                 if (validateFormHint.isValidateSuccess && !this.isSign) {
                     this.isSign = true;
                     axios({
-                        url: '/sign-in/',
+                        url: '/api/',
+                        type: 'post',
                         data: {
+                            method: str,
                             username: self.username,
-                            password: self.password,
+                            password: self.password || 'Shopex123',
                         },
                     }).then(function (json) {
                         console.log('json', json);
@@ -81,7 +88,7 @@
                 }
             },
         },
-        mounted() {
+        mounted () {
             validateFormHint = new ValidateFormHint({
                 element: '.validate',
             });

@@ -22,6 +22,12 @@ app.use(function (err, req, res, next) {
     }
 });
 
+// 接口
+app.post('/api/', function (req, res) {
+    console.log(req.body);
+    res.json({a: '1', b: '2'});
+});
+
 // 服务
 const server = app.listen('5552', function () {
     console.log('server connection open to:\n', `http://localhost:${server.address().port}`);

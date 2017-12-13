@@ -3,6 +3,7 @@ const tools = require('../utils/tools');
 const Dialog = require('../components-dom/g-dialog');
 
 module.exports = function (json) {
+    json.method = json.method || json.type || 'get';
     const opts = tools.extend({
         defaults: {
             method: 'get', // 请求方式默认get

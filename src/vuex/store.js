@@ -67,7 +67,7 @@ export default new Vuex.Store({
                 {
                     href: '/sign-out/',
                     text: '签退',
-                    isHighlight: false,
+                    isHighlight: true,
                 },
                 {
                     href: '/logs/',
