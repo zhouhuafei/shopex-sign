@@ -28,7 +28,7 @@
             }).then(function (json) {
                 if (json.status === 'success') {
                     console.log(json);
-                    self.resultData = json.resultData.data;
+                    // self.resultData = json.resultData.data;
                 }
             });
         },

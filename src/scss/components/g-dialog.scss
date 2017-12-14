@@ -13,10 +13,10 @@
         background: rgba(0, 0, 0, 0.8);
         .g-dialog-alert-close {
             position: absolute;
-            right: px2px(4);
-            top: px2px(4);
+            left: px2rem(4);
+            bottom: px2rem(4);
             color: #ffffff;
-            font-size: px2px(12);
+            font-size: px2rem(12);
         }
         .g-dialog-alert-icon {
             margin-right: px2rem(10);

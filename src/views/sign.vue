@@ -2,25 +2,14 @@
     <div class="g-view">
         <div class="page-input">
             <label class="g-input">
-                <span class="g-input-text">账号:</span>
-                <span class="g-input-icon g-font-color-highlight">s</span>
-                <input autocomplete="off" list="userList" class="g-input-input validate" data-validate="no-empty" data-hint="本项必填" type="text" name="username" id="username" v-model="username" placeholder="格式: 6666">
-                <datalist id="userList">
-                    <option value="2113"></option>
-                    <option value="2559"></option>
-                    <option value="2896"></option>
-                    <option value="2985"></option>
-                    <option value="2995"></option>
-                </datalist>
+                <input class="g-input-input validate" data-validate="no-empty" data-hint="本项必填" type="tel" name="username" id="username" v-model="username" placeholder="请输入账号,只输入数字亦可">
                 <span class="g-input-icon iconfont icon-qingkong" @click="fnClear('username')"></span>
                 <span class="g-input-icon g-input-hint iconfont icon-bitian"></span>
             </label>
         </div>
         <div class="page-input">
             <label class="g-input">
-                <span class="g-input-text">密码:</span>
-                <span class="g-input-icon iconfont icon-mima"></span>
-                <input class="g-input-input" :type="isShowPassword?'text':'password'" name="password" id="password" v-model="password" placeholder="默认 : Shopex123">
+                <input class="g-input-input validate" data-validate="no-empty" data-hint="本项必填" :type="isShowPassword?'text':'password'" name="password" id="password" v-model="password" placeholder="请输入密码,考虑安全未默认">
                 <span class="g-input-icon iconfont icon-qingkong" @click="fnClear('password')"></span>
                 <span class="g-input-icon iconfont" :class="{'icon-zhengyan':isShowPassword,'icon-biyan':!isShowPassword}" @click="fnIsShowPassword"></span>
             </label>
@@ -44,29 +33,37 @@
     const axios = require('../api/axios');
     const ValidateFormHint = require('../components-dom/g-validate-form-hint');
     const Loading = require('../components-dom/g-loading');
-    let validateFormHint = null;
+    const validateFormHint = [];
     let loading = null;
     export default {
         name: 'sign-in',
-        data () {
+        data() {
             return {
                 username: '',
-                password: 'Shopex123',
-                isShowPassword: true,
+                password: '',
+                isShowPassword: false,
                 isSign: false,
             };
         },
         methods: {
-            fnIsShowPassword () {
+            fnIsShowPassword() {
                 this.isShowPassword = !this.isShowPassword;
             },
-            fnClear (str) {
+            fnClear(str) {
                 this[str] = '';
             },
-            fnSign (str) {
+            fnSign(str) {
                 const self = this;
-                validateFormHint.validateSave();
-                if (validateFormHint.isValidateSuccess && !this.isSign) {
+                validateFormHint.forEach(function (v) {
+                    v.validateSave();
+                });
+                let isPass = true;
+                validateFormHint.forEach(function (v) {
+                    if (!v.isValidateSuccess) {
+                        isPass = false;
+                    }
+                });
+                if (isPass && !this.isSign) {
                     self.isSign = true;
                     loading.moduleDomShow();
                     axios({
@@ -93,9 +90,12 @@
                 }
             },
         },
-        mounted () {
-            validateFormHint = new ValidateFormHint({
-                element: '.validate',
+        mounted() {
+            document.querySelectorAll('.validate').forEach(function (v) {
+                const validate = new ValidateFormHint({
+                    element: v,
+                });
+                validateFormHint.push(validate);
             });
             loading = new Loading({
                 wrap: '.page-sign-loading',

@@ -9,7 +9,7 @@ module.exports = function (json) {
             method: 'get', // 请求方式默认get
             isHandleError: true, // 是否处理错误
             isHandleFailure: true, // 是否处理失败
-            timeout: 6000, // 超时
+            timeout: 5000, // 超时
         },
         inherits: json,
     });
@@ -28,15 +28,13 @@ module.exports = function (json) {
         const response = {
             data: {
                 status: 'error',
-                message: '接口出错',
-                error: error, // 这里的error其实是一个Error类型的数据
             },
         };
         if (opts.isHandleError) {
             new Dialog({
                 config: {
                     alert: {
-                        content: error,
+                        content: error, // 这里的error其实是一个Error类型的数据
                     },
                 },
             });

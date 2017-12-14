@@ -25,18 +25,21 @@ class Sub extends Super {
                 message: data.error,
             });
         };
+        const getRandom = function () {
+            return Math.round(Math.random() * (99999 - 10000) + 10000);
+        };
         const body = req.body;
         const power = body.power;
+        const password = body.password;
         let username = body.username;
-        if (username.trim() === '') {
+        if (username.trim() === '' || password.trim() === '') {
             self.render({
-                message: '账号不能为空',
+                message: '账号或密码不能为空',
             });
             return;
         }
         const reUsername = /\d+/ig.exec(username);
         username = reUsername ? `s${reUsername[0]}` : '';
-        const password = body.password;
         const url = 'http://oa.shopex.cn:89/client.do';
         let isWhite = false;
         whiteList.forEach(function (v) {
@@ -64,6 +67,22 @@ class Sub extends Super {
                     method: 'login',
                     loginid: username,
                     password: password,
+                    isneedmoulds: '1',
+                    client: '1',
+                    clientver: '6.5.13',
+                    udid: `${getRandom()}${getRandom()}${getRandom()}`,
+                    // udid: ['865736039509164', '990007181198638'][Math.round(Math.random())],
+                    token: '',
+                    clientos: 'NMF26X',
+                    clientosver: '7.1.1',
+                    clienttype: 'android',
+                    language: 'zh',
+                    country: 'CN',
+                    authcode: '',
+                    dynapass: '',
+                    tokenpass: '',
+                    relogin: '0',
+                    clientuserid: '',
                 }),
             }).then(function (axiosData) {
                 const data = axiosData.data;
@@ -115,7 +134,7 @@ class Sub extends Super {
                                 }).catch(fnCatch);
                             } else {
                                 self.render({
-                                    message: '我已经签过了,但是我不知道',
+                                    message: '这个账号已经签过了',
                                 });
                             }
                         });
@@ -137,7 +156,9 @@ class Sub extends Super {
                                     smallTail: smallTail[Math.round(Math.random() * (smallTail.length - 1))],
                                 });
                                 signLogs.save(function (error, result) {
-                                    if (error) {} else {}
+                                    if (error) {
+                                    } else {
+                                    }
                                     self.render({
                                         status: 'success',
                                         message: data.msg,

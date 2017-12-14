@@ -18,6 +18,10 @@ class Sub extends Super {
                 });
             } else {
                 allCount = result;
+                self.render({
+                    status: 'success',
+                    message: '数据库查询成功',
+                });
             }
         });
     }
