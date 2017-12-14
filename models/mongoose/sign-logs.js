@@ -1,15 +1,19 @@
-const mongoose = require('../../../../db/mongoose');
+const mongoose = require('../../db/mongoose');
 const schema = new mongoose.Schema({
     // 用户名(账号)
     username: {
         type: String,
         default: null,
-        unique: true,
-        required: [true, 'username is required'],
+        index: true,
     },
-    // 账号创建时间
-    createTime: {
-        type: Date,
+    // 签到信息
+    signMessage: {
+        type: String,
+        default: null,
+    },
+    // 小尾巴
+    smallTail: {
+        type: String,
         default: null,
     },
 });

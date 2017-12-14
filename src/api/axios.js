@@ -9,7 +9,7 @@ module.exports = function (json) {
             method: 'get', // 请求方式默认get
             isHandleError: true, // 是否处理错误
             isHandleFailure: true, // 是否处理失败
-            timeout: 5000, // 超时
+            timeout: 6000, // 超时
         },
         inherits: json,
     });

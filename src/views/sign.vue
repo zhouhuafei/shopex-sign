@@ -70,7 +70,7 @@
                     self.isSign = true;
                     loading.moduleDomShow();
                     axios({
-                        url: '/api/',
+                        url: '/api/sign/',
                         type: 'post',
                         data: {
                             power: str,

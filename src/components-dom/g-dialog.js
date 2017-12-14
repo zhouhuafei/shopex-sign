@@ -50,7 +50,7 @@ const Sub = tools.constructorInherit(Super, {
         // 提示框
         alert: {
             timer: null, // 定时器装载
-            time: 3000, // 展示的时间
+            time: 5000, // 展示的时间
             isShowIcon: false, // 是否显示icon
             isShowClose: true, // 是否显示关闭按钮
             icon: 'icon-chenggong', // icon的class
