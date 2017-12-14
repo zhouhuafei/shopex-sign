@@ -1,6 +1,10 @@
 <template>
     <div class="g-view">
-        <div class="text">待续...</div>
+        <div class="logs" v-for="item in resultData">
+            <div class="logs-name">{{item.username}}</div>
+            <div class="logs-msg">{{item.signMessage}}</div>
+            <div class="logs-tail">{{item.smallTail}}</div>
+        </div>
     </div>
 </template>
 
@@ -11,7 +15,7 @@
         data() {
             return {
                 nowPage: 1,
-                nowCount: 20,
+                nowCount: 200,
                 resultData: [],
             };
         },
@@ -27,8 +31,7 @@
                 },
             }).then(function (json) {
                 if (json.status === 'success') {
-                    console.log(json);
-                    // self.resultData = json.resultData.data;
+                    self.resultData = json.result.data;
                 }
             });
         },
@@ -38,8 +41,14 @@
 <style scoped lang="scss">
     @import "../scss/config/config";
 
-    .text {
-        text-align: center;
-        padding-top: px2rem(10);
+    .logs {
+        margin: px2rem(10);
+        .logs-name {
+            text-align: center;
+        }
+        .logs-msg {
+        }
+        .logs-tail {
+        }
     }
 </style>

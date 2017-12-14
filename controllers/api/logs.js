@@ -8,20 +8,40 @@ class Sub extends Super {
         const SignLogs = require('../../models/mongoose/sign-logs');
         const reqNowPage = body.nowPage || 1;
         const reqNowCount = body.nowCount <= 20 ? 20 : body.nowCount;
-        let allCount = null;
-        let allPage = null;
-        SignLogs.count('*', function (error, result) {
+        SignLogs.count({}, function (error, result) {
             if (error) {
                 self.render({
                     status: 'failure',
                     message: '数据库查询失败',
                 });
             } else {
-                allCount = result;
-                self.render({
-                    status: 'success',
-                    message: '数据库查询成功',
-                });
+                const allCount = result;
+                SignLogs
+                    .find({})
+                    .sort({'_id': -1})
+                    .skip((reqNowPage - 1) * reqNowCount)
+                    .limit(reqNowCount)
+                    .exec(function (error, result) {
+                        if (error) {
+                            self.render({
+                                status: 'failure',
+                                message: '数据库查询失败',
+                            });
+                        } else {
+                            const nowCount = result.length;
+                            self.render({
+                                status: 'success',
+                                message: '数据库查询成功',
+                                result: {
+                                    data: result,
+                                    nowPage: reqNowPage,
+                                    nowCount: nowCount,
+                                    allPage: Math.ceil(allCount / nowCount),
+                                    allCount: allCount,
+                                },
+                            });
+                        }
+                    });
             }
         });
     }
