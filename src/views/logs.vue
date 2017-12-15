@@ -21,7 +21,7 @@
         data() {
             return {
                 nowPage: 1,
-                nowCount: 2,
+                nowCount: 20,
                 resultData: [],
             };
         },

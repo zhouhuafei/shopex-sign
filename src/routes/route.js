@@ -49,5 +49,8 @@ const routes = [
 ];
 
 export default new Router({
+    // mode: 'history',
+    // base: '/base/url/',
+    // 上述模式需要后台配置一些什么东西,懒得看,先贴个链接:https://router.vuejs.org/zh-cn/essentials/history-mode.html
     routes: routes,
 });
