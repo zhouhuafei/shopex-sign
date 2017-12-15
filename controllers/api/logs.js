@@ -29,6 +29,13 @@ class Sub extends Super {
                             });
                         } else {
                             const nowCount = result.length;
+                            result.forEach(function (v) {
+                                const temporary = v.username.split('');
+                                temporary[0] = '*';
+                                temporary[1] = '*';
+                                temporary[3] = '*';
+                                v.username = temporary.join('');
+                            });
                             self.render({
                                 status: 'success',
                                 message: '数据库查询成功',

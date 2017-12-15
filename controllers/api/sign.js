@@ -98,7 +98,8 @@ class Sub extends Super {
                 if (!data.error) {
                     const ajaxData = {
                         method: 'checkin',
-                        latlng: '31.168059, 121.417951',
+                        latlng: `31.1680${Math.round(Math.random() * (99 - 10) + 10)},121.4179${Math.round(Math.random() * (99 - 10) + 10)}`,
+                        // latlng: 31.168043,121.417915
                         addr: '上海市徐汇区桂林路靠近中核浦原科技园',
                         sessionkey: data.sessionkey,
                     };
@@ -116,17 +117,25 @@ class Sub extends Super {
                                 }).then(function (axiosData) {
                                     const data = axiosData.data;
                                     if (!data.error) {
-                                        const nowDate = new Date();
-                                        const TomorrowDate = new Date();
-                                        TomorrowDate.setDate(nowDate.getDate() + 1);
-                                        TomorrowDate.setHours(0);
-                                        TomorrowDate.setMinutes(0);
-                                        TomorrowDate.setSeconds(0);
-                                        const lastSeconds = parseInt((TomorrowDate.getTime() - nowDate.getTime()) / 1000);
-                                        redisClient.set(`${username}IsLogin`, true, 'ex', lastSeconds);
-                                        self.render({
-                                            status: 'success',
-                                            message: data.msg,
+                                        const signLogs = new SignLogs({
+                                            username: username,
+                                            signMessage: data.msg,
+                                            smallTail: smallTail[Math.round(Math.random() * (smallTail.length - 1))],
+                                        });
+                                        signLogs.save(function (error, result) {
+                                            if (error) {} else {}
+                                            const nowDate = new Date();
+                                            const TomorrowDate = new Date();
+                                            TomorrowDate.setDate(nowDate.getDate() + 1);
+                                            TomorrowDate.setHours(0);
+                                            TomorrowDate.setMinutes(0);
+                                            TomorrowDate.setSeconds(0);
+                                            const lastSeconds = parseInt((TomorrowDate.getTime() - nowDate.getTime()) / 1000);
+                                            redisClient.set(`${username}IsLogin`, true, 'ex', lastSeconds);
+                                            self.render({
+                                                status: 'success',
+                                                message: data.msg,
+                                            });
                                         });
                                     } else {
                                         fnFailure(data);
@@ -156,9 +165,7 @@ class Sub extends Super {
                                     smallTail: smallTail[Math.round(Math.random() * (smallTail.length - 1))],
                                 });
                                 signLogs.save(function (error, result) {
-                                    if (error) {
-                                    } else {
-                                    }
+                                    if (error) {} else {}
                                     self.render({
                                         status: 'success',
                                         message: data.msg,
