@@ -68,7 +68,7 @@
     .g-view {
         overflow: hidden;
         .logs {
-            margin: px2rem(20) 0;
+            margin-top: px2rem(20);
             padding: px2rem(10);
             background: #ffffff;
             .logs-name {
