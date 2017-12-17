@@ -3,7 +3,7 @@
         <div class="logs" v-for="item in resultData">
             <div class="logs-name">{{item.username}}</div>
             <div class="logs-msg">{{item.signMessage}}</div>
-            <div class="logs-tail">{{item.smallTail}}</div>
+            <div class="logs-tail">---- {{item.smallTail}}</div>
         </div>
         <div class="logs-no-data"></div>
         <div class="logs-loading"></div>
