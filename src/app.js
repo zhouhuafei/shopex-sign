@@ -45,10 +45,14 @@ router.afterEach(function (to, from) {
     }
 });
 
-new Vue({
-    el: '#app',
-    router,
-    store,
-    template: '<app></app>',
-    components: {app},
+window.addEventListener('load', function () {
+    setTimeout(function () {
+        new Vue({
+            el: '#app',
+            router,
+            store,
+            template: '<app></app>',
+            components: {app},
+        });
+    }, 0);
 });
