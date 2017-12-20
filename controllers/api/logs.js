@@ -43,7 +43,7 @@ class Sub extends Super {
                                     data: result,
                                     nowPage: reqNowPage,
                                     nowCount: nowCount,
-                                    allPage: Math.ceil(allCount / nowCount),
+                                    allPage: Math.ceil(allCount / reqNowCount),
                                     allCount: allCount,
                                 },
                             });
