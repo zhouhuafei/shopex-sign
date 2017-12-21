@@ -57,7 +57,7 @@
                 });
             };
             const WhenScrollBottom = applications.whenScrollBottom();
-            const whenScrollBottom = new WhenScrollBottom({callback: {success: getData}});
+            new WhenScrollBottom({callback: {success: getData}});
         },
     };
 </script>
