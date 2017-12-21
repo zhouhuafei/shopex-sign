@@ -28,36 +28,38 @@
         components: {},
         mounted() {
             const self = this;
-            const loading = new Loading({wrap: '.logs-loading'});
-            const getData = function (whenScrollBottom) {
-                axios({
-                    url: '/api/logs/',
-                    method: 'post',
-                    data: {
-                        nowPage: self.nowPage,
-                        nowCount: self.nowCount,
-                    },
-                }).then(function (json) {
-                    if (json.status === 'success') {
-                        const result = json.result;
-                        const resultData = result.data;
-                        if (!resultData.length) {
-                            loading.moduleDomHide();
-                            new NoData({wrap: '.logs-no-data'});
-                        } else {
-                            self.resultData = [...self.resultData, ...resultData];
-                            self.nowPage++;
-                            if (self.nowPage > result.allPage) {
+            self.$nextTick(function () {
+                const loading = new Loading({wrap: '.logs-loading'});
+                const getData = function (whenScrollBottom) {
+                    axios({
+                        url: '/api/logs/',
+                        method: 'post',
+                        data: {
+                            nowPage: self.nowPage,
+                            nowCount: self.nowCount,
+                        },
+                    }).then(function (json) {
+                        if (json.status === 'success') {
+                            const result = json.result;
+                            const resultData = result.data;
+                            if (!resultData.length) {
                                 loading.moduleDomHide();
-                                new Loading({wrap: '.logs-loading', config: {status: 'over'}});
-                                whenScrollBottom.dataLoadOver();
+                                new NoData({wrap: '.logs-no-data'});
+                            } else {
+                                self.resultData = [...self.resultData, ...resultData];
+                                self.nowPage++;
+                                if (self.nowPage > result.allPage) {
+                                    loading.moduleDomHide();
+                                    new Loading({wrap: '.logs-loading', config: {status: 'over'}});
+                                    whenScrollBottom.dataLoadOver();
+                                }
                             }
                         }
-                    }
-                });
-            };
-            const WhenScrollBottom = applications.whenScrollBottom();
-            new WhenScrollBottom({callback: {success: getData}});
+                    });
+                };
+                const WhenScrollBottom = applications.whenScrollBottom();
+                new WhenScrollBottom({callback: {success: getData}});
+            });
         },
     };
 </script>
