@@ -443,6 +443,7 @@ Applications.prototype.whenScrollBottom = function () {
                     failure: function () {
                     },
                 },
+                isBindScrollEvent: true, // 是否绑定滚动事件
                 isInitRender: true, // 是否初始化的时候就进行渲染
                 interval: 80, // 函数节流时间(延迟时间)
                 errorHeight: 0, // 滚动到底部上面一定高度就算是滚动到底部了(误差高度)
@@ -484,14 +485,16 @@ Applications.prototype.whenScrollBottom = function () {
         clearTimeout(self.timer);
         self.timer = setTimeout(function () {
             self.render();
+            console.log(999);
         }, self.opts.interval);
     };
 
     WhenScrollBottom.prototype.power = function () {
-        window.removeEventListener('scroll', this.scroll);
-        window.addEventListener('scroll', this.scroll);
+        const self = this;
+        window.addEventListener('scroll', function () {
+            self.scroll();
+        });
     };
-
     return WhenScrollBottom;
 };
 // 是否禁止浏览器滚动

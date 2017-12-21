@@ -23,6 +23,8 @@
                 nowPage: 1,
                 nowCount: 20,
                 resultData: [],
+                whenScrollBottom: null,
+                fnScroll: null,
             };
         },
         components: {},
@@ -57,7 +59,17 @@
                 });
             };
             const WhenScrollBottom = applications.whenScrollBottom();
-            new WhenScrollBottom({callback: {success: getData}});
+            this.whenScrollBottom = new WhenScrollBottom({
+                isBindScrollEvent: false,
+                callback: {success: getData},
+            });
+            this.fnScroll = function () {
+                this.whenScrollBottom.scroll();
+            };
+            window.addEventListener('scroll', this.fnScroll);
+        },
+        destroyed() {
+            window.removeEventListener('scroll', this.fnScroll);
         },
     };
 </script>
