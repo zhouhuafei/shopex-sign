@@ -45,7 +45,7 @@
                             loading.moduleDomHide();
                             new NoData({wrap: '.logs-no-data'});
                         } else {
-                            self.resultData = [...resultData, ...self.resultData];
+                            self.resultData = [...self.resultData, ...resultData];
                             self.nowPage++;
                             if (self.nowPage > result.allPage) {
                                 loading.moduleDomHide();
