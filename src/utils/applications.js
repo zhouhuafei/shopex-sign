@@ -485,7 +485,6 @@ Applications.prototype.whenScrollBottom = function () {
         clearTimeout(self.timer);
         self.timer = setTimeout(function () {
             self.render();
-            console.log(999);
         }, self.opts.interval);
     };
 

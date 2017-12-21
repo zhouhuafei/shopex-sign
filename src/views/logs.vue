@@ -69,6 +69,7 @@
             window.addEventListener('scroll', self.fnScroll);
         },
         destroyed() {
+            const self = this;
             window.removeEventListener('scroll', self.fnScroll);
         },
     };
