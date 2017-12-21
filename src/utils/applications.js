@@ -491,9 +491,11 @@ Applications.prototype.whenScrollBottom = function () {
 
     WhenScrollBottom.prototype.power = function () {
         const self = this;
-        window.addEventListener('scroll', function () {
-            self.scroll();
-        });
+        if (self.opts.isBindScrollEvent) {
+            window.addEventListener('scroll', function () {
+                self.scroll();
+            });
+        }
     };
     return WhenScrollBottom;
 };

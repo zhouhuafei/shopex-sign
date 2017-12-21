@@ -59,17 +59,17 @@
                 });
             };
             const WhenScrollBottom = applications.whenScrollBottom();
-            this.whenScrollBottom = new WhenScrollBottom({
+            self.whenScrollBottom = new WhenScrollBottom({
                 isBindScrollEvent: false,
                 callback: {success: getData},
             });
-            this.fnScroll = function () {
-                this.whenScrollBottom.scroll();
+            self.fnScroll = function () {
+                self.whenScrollBottom.scroll();
             };
-            window.addEventListener('scroll', this.fnScroll);
+            window.addEventListener('scroll', self.fnScroll);
         },
         destroyed() {
-            window.removeEventListener('scroll', this.fnScroll);
+            window.removeEventListener('scroll', self.fnScroll);
         },
     };
 </script>
