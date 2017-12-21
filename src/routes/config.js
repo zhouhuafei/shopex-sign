@@ -10,14 +10,13 @@ const objRoutes = {
         },
     },
     'sign-out': {
-        componentName: 'sign',
+        component: 'sign',
         meta: {
             title: '签退',
         },
     },
     'sign-in': {
-        route: '/',
-        componentName: 'sign',
+        component: 'sign',
         meta: {
             title: '签到',
         },
@@ -26,19 +25,19 @@ const objRoutes = {
 const arrRoutes = [];
 Object.keys(objRoutes).forEach(function (key) {
     const v = objRoutes[key];
-    console.log(`${path.view}${v.componentName ? v.componentName : key}.vue`);
+    console.log(`${path.view}${v.component ? v.component : key}.vue`);
     arrRoutes.push({
-        path: `${path.route}${v.route ? v.route : key}/`,
+        path: `${path.route}${key}/`,
         name: key,
         meta: v.meta,
         /*
         component: function (resolve) {
             require.ensure([], function () {
-                resolve(require(`${path.view}${v.componentName ? v.componentName : key}.vue`));
+                resolve(require(`${path.view}${v.component ? v.component : key}.vue`));
             }, key);
         },
         */
-        component: resolve => require([`${path.view}${v.componentName ? v.componentName : key}.vue`], resolve),
+        component: resolve => require([`${path.view}${v.component ? v.component : key}.vue`], resolve),
     });
 });
 export default arrRoutes;
