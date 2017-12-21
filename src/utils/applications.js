@@ -468,16 +468,17 @@ Applications.prototype.whenScrollBottom = function () {
         const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         const clientHeight = document.documentElement.clientHeight;
         if (scrollTop + clientHeight >= allH - this.opts.errorHeight && !this.isLoadOver) {
+            this.isLoadOver = true; // 数据加载完毕了,这里一定要设置成数据加载完毕了,否则异步请求响应比较慢的时候,会重复执行callback.success(this);
             callback.success(this);
         } else {
             callback.failure();
         }
     };
 
-    // 数据加载完毕
-    WhenScrollBottom.prototype.dataLoadOver = function () {
-        this.isLoadOver = true;
-        // 数据加载完毕,手动调用这个方法,或者手动把isLoadOver属性变成true,建议掉方法
+    // 数据尚未加载完毕
+    WhenScrollBottom.prototype.dataLoadContinue = function () {
+        this.isLoadOver = false;
+        // 数据如果没有加载完毕,手动调用这个方法,或者手动把isLoadOver属性变成false,建议调方法
     };
 
     WhenScrollBottom.prototype.scroll = function () {

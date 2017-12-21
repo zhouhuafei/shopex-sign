@@ -52,7 +52,8 @@
                             if (self.nowPage > result.allPage) {
                                 loading.moduleDomHide();
                                 new Loading({wrap: '.logs-loading', config: {status: 'over'}});
-                                whenScrollBottom.dataLoadOver();
+                            } else {
+                                whenScrollBottom.dataLoadContinue();
                             }
                         }
                     }
