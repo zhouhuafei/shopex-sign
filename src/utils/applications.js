@@ -449,7 +449,8 @@ Applications.prototype.whenScrollBottom = function () {
             },
             inherits: json,
         });
-        this.isLoadOver = false;// 数据是否加载完毕
+        this.timer = null; // 定时器
+        this.isLoadOver = false; // 数据是否加载完毕
         this.init();
     }
 
@@ -478,16 +479,19 @@ Applications.prototype.whenScrollBottom = function () {
         // 数据加载完毕,手动调用这个方法,或者手动把isLoadOver属性变成true,建议掉方法
     };
 
-    WhenScrollBottom.prototype.power = function () {
+    WhenScrollBottom.prototype.scroll = function () {
         const self = this;
-        let timer = null;
-        window.addEventListener('scroll', function () {
-            clearTimeout(timer);
-            timer = setTimeout(function () {
-                self.render();
-            }, self.opts.interval);
-        });
+        clearTimeout(self.timer);
+        self.timer = setTimeout(function () {
+            self.render();
+        }, self.opts.interval);
     };
+
+    WhenScrollBottom.prototype.power = function () {
+        window.removeEventListener('scroll', this.scroll);
+        window.addEventListener('scroll', this.scroll);
+    };
+
     return WhenScrollBottom;
 };
 // 是否禁止浏览器滚动
