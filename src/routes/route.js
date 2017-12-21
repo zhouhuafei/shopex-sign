@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import routes2 from './config';
+import routeConfig from './config';
 
 Vue.use(Router);
 
@@ -45,6 +45,26 @@ const routes = [
         },
     },
 ];
+
+const routes2 = [];
+Object.keys(routeConfig).forEach(function (key) {
+    const v = routeConfig[key];
+    routes2.push({
+        path: v.pathRoute,
+        name: v.name,
+        meta: v.meta,
+        /*
+        component: function (resolve) {
+            require.ensure([], function () {
+                resolve(require(`${path.view}${v.component ? v.component : key}.vue`));
+            }, key);
+        },
+        */
+        // component: resolve => require([`${path.view}${v.component ? v.component : key}.vue`], resolve),
+        // component: require(pathView),
+        component: require('../views/logs.vue'), // 写成变量就是不行,呵呵呵,去路由页面添加试试
+    });
+});
 console.log(routes);
 console.log(routes2);
 

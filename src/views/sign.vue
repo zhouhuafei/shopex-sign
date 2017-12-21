@@ -36,7 +36,7 @@
     const validateFormHint = [];
     let loading = null;
     export default {
-        name: 'sign-in',
+        name: 'sign',
         data() {
             return {
                 username: '',
