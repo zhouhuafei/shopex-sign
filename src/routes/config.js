@@ -25,9 +25,13 @@ const objRoutes = {
 const arrRoutes = [];
 Object.keys(objRoutes).forEach(function (key) {
     const v = objRoutes[key];
-    console.log(`${path.view}${v.component ? v.component : key}.vue`);
+    console.log('componentPath', `${path.view}${v.component ? v.component : key}.vue`);
+    let pathRoute = `${path.route}${key}/`;
+    if (key === 'sign-in') {
+        pathRoute = `/`;
+    }
     arrRoutes.push({
-        path: `${path.route}${key}/`,
+        path: pathRoute,
         name: key,
         meta: v.meta,
         /*
