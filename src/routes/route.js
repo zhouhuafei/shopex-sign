@@ -10,6 +10,7 @@ const routes = [
         name: 'logs',
         meta: {
             title: '日志',
+            isValidateLogin: false,
         },
         component: function (resolve) {
             require.ensure([], function () {
@@ -23,6 +24,7 @@ const routes = [
         name: 'sign-in',
         meta: {
             title: '签到',
+            isValidateLogin: false,
         },
         component: function (resolve) {
             require.ensure([], function () {
@@ -36,6 +38,7 @@ const routes = [
         name: 'sign-out',
         meta: {
             title: '签退',
+            isValidateLogin: false,
         },
         component: function (resolve) {
             require.ensure([], function () {
