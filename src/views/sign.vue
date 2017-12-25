@@ -14,7 +14,7 @@
                 <span class="g-input-icon iconfont" :class="{'icon-zhengyan':isShowPassword,'icon-biyan':!isShowPassword}" @click="fnIsShowPassword"></span>
             </label>
         </div>
-        <div class="page-button" v-if="this.$route.name === 'signIn'">
+        <div class="page-button" v-if="this.$route.name === 'sign-in'">
             <div class="g-button" :class="{'g-button-cancel':isSign}" @click="fnSign('sign-in')">
                 <div class="g-button-text">签到</div>
             </div>

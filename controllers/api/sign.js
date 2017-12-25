@@ -103,7 +103,7 @@ class Sub extends Super {
                         addr: '上海市徐汇区桂林路靠近中核浦原科技园',
                         sessionkey: data.sessionkey,
                     };
-                    if (power === 'signIn') { // 签到
+                    if (power === 'sign-in') { // 签到
                         ajaxData.type = 'checkin';
                         redisClient.get(`${username}IsLogin`, function (error, reply) {
                             if (!reply && !error) {
@@ -147,7 +147,7 @@ class Sub extends Super {
                                 });
                             }
                         });
-                    } else if (power === 'signOut') { // 签退
+                    } else if (power === 'sign-out') { // 签退
                         ajaxData.type = 'checkout';
                         axios({
                             url: url,
