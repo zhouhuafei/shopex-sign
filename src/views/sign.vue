@@ -15,12 +15,12 @@
             </label>
         </div>
         <div class="page-button" v-if="this.$route.name === 'signIn'">
-            <div class="g-button" :class="{'g-button-cancel':isSign}" @click="fnSign('signIn')">
+            <div class="g-button" :class="{'g-button-cancel':isSign}" @click="fnSign('sign-in')">
                 <div class="g-button-text">签到</div>
             </div>
         </div>
         <div class="page-button" v-else>
-            <div class="g-button" :class="{'g-button-cancel':isSign}" @click="fnSign('signOut')">
+            <div class="g-button" :class="{'g-button-cancel':isSign}" @click="fnSign('sign-out')">
                 <div class="g-button-text">签退</div>
             </div>
         </div>
