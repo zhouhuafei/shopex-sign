@@ -19,8 +19,8 @@
                 <div class="g-button-text">签到</div>
             </div>
         </div>
-        <div class="page-button button-sign-out" v-else>
-            <div class="g-button" :class="{'g-button-cancel':isSign}" @click="fnSign('sign-out')">
+        <div class="page-button" v-else>
+            <div class="g-button button-sign-out" :class="{'g-button-cancel':isSign}" @click="fnSign('sign-out')">
                 <div class="g-button-text">签退</div>
             </div>
         </div>
