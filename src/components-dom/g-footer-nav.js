@@ -16,7 +16,7 @@ const Sub = tools.constructorInherit(Super, {
         //     routeName: 'home',
         //     href: '/',
         //     text: '首页',
-        //     icon: 'icon-shouye',
+        //     icon: 'icon-home',
         //     isHighlight: false,
         //     isShowMark: false
         // }

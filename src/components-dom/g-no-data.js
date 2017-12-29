@@ -14,10 +14,10 @@ const Sub = tools.constructorInherit(Super, {
     },
     // 数据
     data: {
-        icon: 'icon-meiyoushuju',
+        icon: 'icon-no-data',
         text: '没有数据',
         button: {
-            icon: 'icon-shouye',
+            icon: 'icon-home',
             text: '回首页',
             href: '/',
         },

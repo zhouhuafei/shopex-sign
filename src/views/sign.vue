@@ -3,15 +3,15 @@
         <div class="page-input">
             <label class="g-input">
                 <input class="g-input-input validate" data-validate="no-empty" data-hint="本项必填" type="tel" name="username" id="username" v-model="username" placeholder="请输入账号,只输入数字亦可">
-                <span class="g-input-icon iconfont icon-qingkong" @click="fnClear('username')"></span>
-                <span class="g-input-icon g-input-hint iconfont icon-bitian"></span>
+                <span class="g-input-icon iconfont icon-clear" @click="fnClear('username')"></span>
+                <span class="g-input-icon g-input-hint iconfont icon-required"></span>
             </label>
         </div>
         <div class="page-input">
             <label class="g-input">
                 <input class="g-input-input validate" data-validate="no-empty" data-hint="本项必填" :type="isShowPassword?'text':'password'" name="password" id="password" v-model="password" placeholder="请输入密码,考虑安全未默认">
-                <span class="g-input-icon iconfont icon-qingkong" @click="fnClear('password')"></span>
-                <span class="g-input-icon iconfont" :class="{'icon-zhengyan':isShowPassword,'icon-biyan':!isShowPassword}" @click="fnIsShowPassword"></span>
+                <span class="g-input-icon iconfont icon-clear" @click="fnClear('password')"></span>
+                <span class="g-input-icon iconfont" :class="{'icon-eye-on':isShowPassword,'icon-eye':!isShowPassword}" @click="fnIsShowPassword"></span>
             </label>
         </div>
         <div class="page-button" v-if="this.$route.name === 'sign-in'">

@@ -37,7 +37,7 @@ Sub.prototype.moduleDomCreate = function () {
         }
         moduleDomHtml = `
             <div class="g-loading-body">
-                <div class="g-loading-run-icon iconfont icon-jiazaizhong"></div>
+                <div class="g-loading-run-icon iconfont icon-loading"></div>
             </div>
         `;
     }
@@ -54,7 +54,7 @@ Sub.prototype.moduleDomCreate = function () {
         }
         moduleDomHtml = `
             <div class="g-loading-body">
-                <div class="g-loading-over-icon iconfont icon-meiyoushuju"></div>
+                <div class="g-loading-over-icon iconfont icon-no-data"></div>
                 <div class="g-loading-over-text">没有数据了</div>
             </div>
         `;

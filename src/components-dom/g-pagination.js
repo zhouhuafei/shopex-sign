@@ -51,8 +51,8 @@ Sub.prototype.moduleDomCreate = function () {
                     </label>
                 </div>
                 <div class="g-pagination-text">页</div>
-                <a href="javascript:;" class="g-pagination-btn g-pagination-btn-inactive iconfont icon-shangyiye"></a>
-                <a href="javascript:;" class="g-pagination-btn iconfont icon-xiayiye"></a>
+                <a href="javascript:;" class="g-pagination-btn g-pagination-btn-inactive iconfont icon-prev"></a>
+                <a href="javascript:;" class="g-pagination-btn iconfont icon-next"></a>
             `,
         },
     });

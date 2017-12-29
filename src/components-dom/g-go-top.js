@@ -23,7 +23,7 @@ Sub.prototype.moduleDomCreate = function () {
         customAttribute: this.opts.config.moduleDomCustomAttribute,
         attribute: {
             className: 'g-go-top',
-            innerHTML: '<div class="g-go-top-icon iconfont icon-shangjiantou"></div>',
+            innerHTML: '<div class="g-go-top-icon iconfont icon-up"></div>',
         },
     });
 };

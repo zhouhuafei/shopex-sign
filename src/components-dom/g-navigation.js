@@ -15,31 +15,31 @@ const Sub = tools.constructorInherit(Super, {
         items: [
             {
                 href: route,
-                icon: 'icon-shouye',
+                icon: 'icon-home',
                 text: '首页',
                 isShowMark: false,
             },
             {
                 href: `${route}dev-globals/`,
-                icon: 'icon-kaifa',
+                icon: 'icon-dev',
                 text: '开发全局',
                 isShowMark: false,
             },
             {
                 href: `${route}dev-components/`,
-                icon: 'icon-kaifa',
+                icon: 'icon-dev',
                 text: '开发组件',
                 isShowMark: false,
             },
             {
                 href: `${route}dev-words/`,
-                icon: 'icon-kaifa',
+                icon: 'icon-dev',
                 text: '开发词汇',
                 isShowMark: false,
             },
             {
                 href: `${route}mine/`,
-                icon: 'icon-wode',
+                icon: 'icon-mine',
                 text: '我的',
                 isShowMark: false,
             },

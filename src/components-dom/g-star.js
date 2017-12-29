@@ -27,7 +27,7 @@ Sub.prototype.moduleDomCreate = function () {
         if (i < this.opts.config.nowStarNum) {
             className = 'g-star-items-active';
         }
-        html += `<div data-index="${i}" class="iconfont icon-pingxing g-star-items ${className}"></div>`;
+        html += `<div data-index="${i}" class="iconfont icon-star g-star-items ${className}"></div>`;
     }
     this.moduleDom = applications.createElement({
         style: this.opts.config.moduleDomStyle,
