@@ -271,7 +271,8 @@ Tools.prototype.isPositiveInteger = function (value) {
     return reg.test(value);
 };
 // 是不是保留了place位小数(默认两位)
-Tools.prototype.isKeepDecimal = function (value, place = 2) {
+Tools.prototype.is
+Decimal = function (value, place = 2) {
     const reg = new RegExp(`^\\d+\\.\\d{${place}}$`);
     return reg.test(value);
 };
@@ -325,7 +326,7 @@ Tools.prototype.keepDecimal = function (value = 0, place = 2, isFormat = true) {
     let result = value;
     const baseNum = Math.pow(10, place);
     if (Number(place) !== 0) {
-        result = (Math.floor(parseFloat(value) * baseNum) / baseNum).toFixed(2);
+        result = (Math.floor(parseFloat(value) * baseNum) / baseNum).toFixed(place);
     }
     if (isFormat) {
         const arr = result.split('.');
