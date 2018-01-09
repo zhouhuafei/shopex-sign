@@ -271,8 +271,7 @@ Tools.prototype.isPositiveInteger = function (value) {
     return reg.test(value);
 };
 // 是不是保留了place位小数(默认两位)
-Tools.prototype.is
-Decimal = function (value, place = 2) {
+Tools.prototype.isDecimal = function (value, place = 2) {
     const reg = new RegExp(`^\\d+\\.\\d{${place}}$`);
     return reg.test(value);
 };
