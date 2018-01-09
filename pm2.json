@@ -3,7 +3,8 @@
         {
             "name": "shopex-sign",
             "script": "app.js",
-            "exec_mode": "fork",
+            "exec_mode": "cluster",
+            "instances": 4,
             "ignore_watch": [
                 "src",
                 "dist",
