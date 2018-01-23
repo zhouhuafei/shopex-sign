@@ -6,9 +6,12 @@ module.exports = {
     },
     extends: 'standard',
     env: {
-        commonjs: true,
-        node: true,
-        browser: true,
+        node: true, // Node.js 全局变量和 Node.js 作用域。
+        browser: true, // browser 全局变量。
+        commonjs: true, // CommonJS 全局变量和 CommonJS 作用域 (仅为使用 Browserify/WebPack 写的只支持浏览器的代码)。
+        jest: true, // Jest 全局变量。
+        es6: true, // 支持除模块外所有 ECMAScript 6 特性（该选项会自动设置 ecmaVersion 解析器选项为 6）。
+        amd: true, // 定义 require() 和 define() 作为像 amd 一样的全局变量。
     },
     plugins: ['html'],
     /*
@@ -26,5 +29,6 @@ module.exports = {
         'semi': [2, 'always'], // 要求或禁止使用分号代替 ASI(自动分号插入)
         'comma-dangle': [2, 'always-multiline'], // 要求或禁止使用拖尾逗号
         'space-before-function-paren': 0, // 要求或禁止函数圆括号之前有一个空格
+        'generator-star-spacing': 0, // 强制 generator 函数中 * 号周围使用一致的空格
     },
 };
