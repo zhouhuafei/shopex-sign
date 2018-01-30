@@ -4,7 +4,7 @@
             "name": "shopex-sign",
             "script": "app.js",
             "exec_mode": "cluster",
-            "instances": 1,
+            "instances": 2,
             "ignore_watch": [
                 "src",
                 "dist",
