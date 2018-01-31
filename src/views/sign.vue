@@ -54,7 +54,7 @@
                 isShowPassword: false,
                 isSign: false,
                 time: '2018/03/06',
-                isShowNotice: true,
+                isShowNotice: false,
             };
         },
         methods: {
@@ -109,8 +109,8 @@
                 });
                 validateFormHint.push(validate);
             });
-            if (new Date() >= new Date(this.time) && window.location.host !== 'sign.suibianxiexie.top') {
-                this.isShowNotice = false;
+            if (new Date() < new Date(this.time) && window.location.host !== 'sign.suibianxiexie.top') {
+                this.isShowNotice = true;
             }
             loading = new Loading({
                 wrap: '.page-sign-loading',
