@@ -24,6 +24,16 @@
                 <div class="g-button-text">签退</div>
             </div>
         </div>
+        <div v-if="isShowNotice" class="page-notice">
+            <div class="page-notice-title">公告</div>
+            <a class="page-notice-danger" href="http://sign.suibianxiexie.top">
+                <div>新网址 - 请保存</div>
+                <div>http://sign.suibianxiexie.top</div>
+            </a>
+            <div>旧网址 - 会失效</div>
+            <div>http://47.100.125.178:5552</div>
+            <div>{{time}} 失效</div>
+        </div>
         <div class="page-sign-loading g-font-color-highlight"></div>
     </div>
 </template>
@@ -43,6 +53,8 @@
                 password: '',
                 isShowPassword: false,
                 isSign: false,
+                time: '2018/03/06',
+                isShowNotice: true,
             };
         },
         methods: {
@@ -97,6 +109,9 @@
                 });
                 validateFormHint.push(validate);
             });
+            if (new Date() >= new Date(this.time) && window.location.host !== 'sign.suibianxiexie.top') {
+                this.isShowNotice = false;
+            }
             loading = new Loading({
                 wrap: '.page-sign-loading',
                 config: {
@@ -109,6 +124,19 @@
 
 <style scoped lang="scss">
     @import "../scss/config/config";
+
+    .page-notice {
+        text-align: center;
+        margin-top: px2px(10);
+        color: $g-warning-color;
+        font-weight: bold;
+        .page-notice-title {
+            color: $g-danger-color;
+        }
+        .page-notice-danger {
+            color: $g-danger-color;
+        }
+    }
 
     .g-view {
         padding-top: px2rem(20);
