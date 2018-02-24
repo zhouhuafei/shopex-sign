@@ -113,7 +113,7 @@ class Sub extends Super {
                                 if (day === 6 || day === 0) {
                                     self.render({
                                         status: 'success',
-                                        message: '周六周天不可以签到，别问我为什么，我也想知道为什么',
+                                        message: '周六周天不可以签到，别问我为什么，我也想知道为什么。',
                                     });
                                     return;
                                 }
@@ -166,7 +166,7 @@ class Sub extends Super {
                         if (day === 6 || day === 0) {
                             self.render({
                                 status: 'success',
-                                message: '周六周天不可以签退，别问我为什么，我也想知道为什么',
+                                message: '周六周天不可以签退，别问我为什么，我也想知道为什么。',
                             });
                             return;
                         }
