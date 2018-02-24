@@ -24,15 +24,13 @@
                 <div class="g-button-text">签退</div>
             </div>
         </div>
-        <div v-if="isShowNotice" class="page-notice">
-            <div class="page-notice-title">公告</div>
-            <a class="page-notice-danger" href="http://sign.suibianxiexie.top">
-                <div>新网址 - 请保存</div>
-                <div>http://sign.suibianxiexie.top</div>
-            </a>
-            <div>旧网址 - 会失效</div>
-            <div>http://47.100.125.178:5552</div>
-            <div>{{time}} 失效</div>
+        <div class="page-notice">
+            <div class="page-notice-title">公告:</div>
+            <div class="page-notice-text">1. 目的只是为了少写流程，请理性使用，请保持隐秘，请不要传播。</div>
+            <template v-if="isShowNotice">
+                <a class="page-notice-text" href="http://sign.suibianxiexie.top">2. 新网址: http://sign.suibianxiexie.top</a>
+                <div class="page-notice-text">3. 旧网址: http://47.100.125.178:5552 {{time}} 失效</div>
+            </template>
         </div>
         <div class="page-sign-loading g-font-color-highlight"></div>
     </div>
@@ -126,15 +124,13 @@
     @import "../scss/config/config";
 
     .page-notice {
-        text-align: center;
-        margin-top: px2px(10);
-        color: $g-warning-color;
-        font-weight: bold;
+        margin: px2rem(10);
         .page-notice-title {
             color: $g-danger-color;
         }
-        .page-notice-danger {
-            color: $g-danger-color;
+        .page-notice-text {
+            text-indent: px2rem(10);
+            display: block;
         }
     }
 
