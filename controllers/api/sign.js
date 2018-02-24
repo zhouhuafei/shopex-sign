@@ -160,6 +160,16 @@ class Sub extends Super {
                             }
                         });
                     } else if (power === 'sign-out') { // 签退
+                        // 周六周天不可以签退
+                        const myDate = new Date();
+                        const day = myDate.getDay();
+                        if (day === 6 || day === 0) {
+                            self.render({
+                                status: 'success',
+                                message: '周六周天不可以签退，别问我为什么，我也想知道为什么',
+                            });
+                            return;
+                        }
                         ajaxData.type = 'checkout';
                         axios({
                             url: url,
