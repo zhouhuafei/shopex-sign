@@ -107,6 +107,16 @@ class Sub extends Super {
                         ajaxData.type = 'checkin';
                         redisClient.get(`${username}IsLogin`, function (error, reply) {
                             if (!reply && !error) {
+                                // 周六周天不可以签到
+                                const myDate = new Date();
+                                const day = myDate.getDay();
+                                if (day === 6 || day === 0) {
+                                    self.render({
+                                        status: 'success',
+                                        message: '周六周天不可以签到，别问我为什么，我也想知道为什么',
+                                    });
+                                    return;
+                                }
                                 axios({
                                     url: url,
                                     headers: {
@@ -123,7 +133,9 @@ class Sub extends Super {
                                             smallTail: smallTail[Math.round(Math.random() * (smallTail.length - 1))],
                                         });
                                         signLogs.save(function (error, result) {
-                                            if (error) {} else {}
+                                            if (error) {
+                                            } else {
+                                            }
                                             const nowDate = new Date();
                                             const TomorrowDate = new Date();
                                             TomorrowDate.setDate(nowDate.getDate() + 1);
@@ -165,7 +177,9 @@ class Sub extends Super {
                                     smallTail: smallTail[Math.round(Math.random() * (smallTail.length - 1))],
                                 });
                                 signLogs.save(function (error, result) {
-                                    if (error) {} else {}
+                                    if (error) {
+                                    } else {
+                                    }
                                     self.render({
                                         status: 'success',
                                         message: data.msg,
