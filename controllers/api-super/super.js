@@ -20,14 +20,19 @@ class Super {
                 allCount: 0,
             },
         };
+        this.isRendered = false; // 是否已经响应过了结果 一次请求只能响应一次结果 多次响应会报错 Can't set headers after they are sent.
         this.init();
     }
 
-    init() {}
+    init() {
+    }
 
     render(json = {}) {
         const self = this;
-        self.res.json(self.tools.extend({defaults: self.dataInfo, inherits: json}));
+        if (!self.isRendered) {
+            self.isRendered = true;
+            self.res.json(self.tools.extend({defaults: self.dataInfo, inherits: json}));
+        }
     }
 }
 
