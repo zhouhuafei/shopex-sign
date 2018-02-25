@@ -82,9 +82,12 @@
     .g-view {
         overflow: hidden;
         .logs {
-            margin-top: px2rem(20);
+            margin-top: px2rem(10);
             padding: px2rem(10);
             background: #ffffff;
+            &:first-of-type {
+                margin-top: 0;
+            }
             .logs-name {
                 color: $g-danger-color;
             }
