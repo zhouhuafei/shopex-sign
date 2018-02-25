@@ -36,7 +36,7 @@ class Sub extends Super {
             } else {
                 self.render({
                     status: 'failure',
-                    message: '数据库查询失败',
+                    message: 'zhf.multiple-calls 参数错误',
                     failureInfo: error,
                 });
             }
