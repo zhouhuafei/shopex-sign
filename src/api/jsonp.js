@@ -35,7 +35,8 @@ module.exports = function (json) {
     }
 
     if (url) {
-        const fnName = `jsonpCallback${new Date().getTime()}`;
+        const random = ('' + Math.random()).substring(2);
+        const fnName = `jsonpCallback${new Date().getTime()}${random}`;
         window[fnName] = function (dataInfo) {
             callback(dataInfo);
             if (dataInfo.status === 'failure' && opts.isHandleFailure) {
