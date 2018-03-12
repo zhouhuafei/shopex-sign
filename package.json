@@ -13,7 +13,8 @@
         "serverReload": "pm2 reload all",
         "serverSave": "pm2 save",
         "serverStartup": "pm2 startup",
-        "vueDev": "cross-env NODE_ENV=development webpack-dev-server --inline",
+        "vueDev": "cross-env NODE_ENV=development webpack --colors --profile --progress --display-modules",
+        "vueDevHot": "cross-env NODE_ENV=development webpack-dev-server --inline",
         "vueBuild": "cross-env NODE_ENV=production webpack --colors --profile --progress --display-modules"
     },
     "repository": {
