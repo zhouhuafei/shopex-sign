@@ -263,7 +263,7 @@ Tools.prototype.isEmpty = function (value) {
 };
 // 是不是数字0
 Tools.prototype.isZero = function (value) {
-    return Number(value) === 0;
+    return value.toString().trim() === '0';
 };
 // 是不是正整数
 Tools.prototype.isPositiveInteger = function (value) {
