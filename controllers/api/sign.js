@@ -43,7 +43,7 @@ class Sub extends Super {
         const url = 'http://oa.shopex.cn:89/client.do';
         let isWhite = false;
         whiteList.forEach(function (v) {
-            console.log(username, v);
+            // console.log(username, v);
             if (username === v) {
                 isWhite = true;
             }
