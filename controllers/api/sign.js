@@ -26,7 +26,7 @@ class Sub extends Super {
             });
         };
         const getRandom = function () {
-            return Math.round(Math.random() * (99999 - 10000) + 10000);
+            return Math.round(Math.random() * (99 - 10) + 10);
         };
         const body = req.body;
         const power = body.power;
@@ -42,10 +42,11 @@ class Sub extends Super {
         username = reUsername ? `s${reUsername[0]}` : '';
         const url = 'http://oa.shopex.cn:89/client.do';
         let isWhite = false;
+        let userInfo = {};
         whiteList.forEach(function (v) {
-            // console.log(username, v);
-            if (username === v) {
+            if (username === v.username) {
                 isWhite = true;
+                userInfo = v;
             }
         });
         if (!isWhite) {
@@ -70,8 +71,7 @@ class Sub extends Super {
                     isneedmoulds: '1',
                     client: '1',
                     clientver: '6.5.13',
-                    udid: `${getRandom()}${getRandom()}${getRandom()}`,
-                    // udid: ['865736039509164', '990007181198638'][Math.round(Math.random())],
+                    udid: userInfo.udid,
                     token: '',
                     clientos: 'NMF26X',
                     clientosver: '7.1.1',
@@ -85,126 +85,115 @@ class Sub extends Super {
                     clientuserid: '',
                 }),
             }).then(function (axiosData) {
-                const data = axiosData.data;
-                const setCookie = axiosData.headers['set-cookie'];
-                const getCookie = function (cookie) {
-                    const arr = [];
-                    cookie.forEach(function (v) {
-                        arr.push(v.split(';')[0]);
-                    });
-                    return arr.join('; ');
-                };
-                const cookie = getCookie(setCookie);
-                if (!data.error) {
-                    const ajaxData = {
-                        method: 'checkin',
-                        latlng: `31.1680${Math.round(Math.random() * (99 - 10) + 10)},121.4179${Math.round(Math.random() * (99 - 10) + 10)}`,
-                        // latlng: 31.168043,121.417915
-                        addr: '上海市徐汇区桂林路靠近中核浦原科技园',
-                        sessionkey: data.sessionkey,
-                    };
-                    if (power === 'sign-in') { // 签到
-                        ajaxData.type = 'checkin';
-                        redisClient.get(`${username}IsLogin`, function (error, reply) {
-                            if (!reply && !error) {
-                                // 周六周天不可以签到
-                                const myDate = new Date();
-                                const day = myDate.getDay();
-                                if (day === 6 || day === 0) {
-                                    self.render({
-                                        status: 'success',
-                                        message: '周六周天不可以签到，别问我为什么，我也想知道为什么。',
-                                    });
-                                    return;
-                                }
-                                axios({
-                                    url: url,
-                                    headers: {
-                                        'Cookie': cookie,
-                                    },
-                                    method: 'post',
-                                    data: qs.stringify(ajaxData),
-                                }).then(function (axiosData) {
-                                    const data = axiosData.data;
-                                    if (!data.error) {
-                                        const signLogs = new SignLogs({
-                                            username: username,
-                                            signMessage: data.msg,
-                                            smallTail: smallTail[Math.round(Math.random() * (smallTail.length - 1))],
-                                        });
-                                        signLogs.save(function (error, result) {
-                                            if (error) {
-                                            } else {
-                                            }
-                                            const nowDate = new Date();
-                                            const TomorrowDate = new Date();
-                                            TomorrowDate.setDate(nowDate.getDate() + 1);
-                                            TomorrowDate.setHours(0);
-                                            TomorrowDate.setMinutes(0);
-                                            TomorrowDate.setSeconds(0);
-                                            const lastSeconds = parseInt((TomorrowDate.getTime() - nowDate.getTime()) / 1000);
-                                            redisClient.set(`${username}IsLogin`, true, 'ex', lastSeconds);
-                                            self.render({
-                                                status: 'success',
-                                                message: data.msg,
-                                            });
-                                        });
-                                    } else {
-                                        fnFailure(data);
-                                    }
-                                }).catch(fnCatch);
-                            } else {
-                                self.render({
-                                    message: '这个账号已经签过了',
-                                });
-                            }
+                setTimeout(function () {
+                    const data = axiosData.data;
+                    const setCookie = axiosData.headers['set-cookie'];
+                    const getCookie = function (cookie) {
+                        const arr = [];
+                        cookie.forEach(function (v) {
+                            arr.push(v.split(';')[0]);
                         });
-                    } else if (power === 'sign-out') { // 签退
-                        // 周六周天不可以签退
+                        return arr.join('; ');
+                    };
+                    const cookie = getCookie(setCookie);
+                    if (!data.error) {
+                        // 周六周天不可以签
                         const myDate = new Date();
                         const day = myDate.getDay();
                         if (day === 6 || day === 0) {
-                            self.render({
-                                status: 'success',
-                                message: '周六周天不可以签退，别问我为什么，我也想知道为什么。',
-                            });
+                            self.render({message: '周六周天不可以签。'});
                             return;
                         }
-                        ajaxData.type = 'checkout';
-                        axios({
-                            url: url,
-                            headers: {
-                                'Cookie': cookie,
-                            },
-                            method: 'post',
-                            data: qs.stringify(ajaxData),
-                        }).then(function (axiosData) {
-                            const data = axiosData.data;
-                            if (!data.error) {
-                                const signLogs = new SignLogs({
-                                    username: username,
-                                    signMessage: data.msg,
-                                    smallTail: smallTail[Math.round(Math.random() * (smallTail.length - 1))],
-                                });
-                                signLogs.save(function (error, result) {
-                                    if (error) {
-                                    } else {
-                                    }
+                        const ajaxData = {
+                            method: 'checkin',
+                            latlng: `31.1680${getRandom()},121.4179${getRandom()}`,
+                            // latlng: 31.168043,121.417915
+                            addr: '上海市徐汇区桂林路靠近中核浦原科技园',
+                            sessionkey: data.sessionkey,
+                        };
+                        if (power === 'sign-in') { // 签到
+                            ajaxData.type = 'checkin';
+                            redisClient.get(`${username}IsLogin`, function (error, reply) {
+                                if (!reply && !error) {
+                                    axios({
+                                        url: url,
+                                        headers: {
+                                            'Cookie': cookie,
+                                        },
+                                        method: 'post',
+                                        data: qs.stringify(ajaxData),
+                                    }).then(function (axiosData) {
+                                        const data = axiosData.data;
+                                        if (!data.error) {
+                                            const signLogs = new SignLogs({
+                                                username: username,
+                                                signMessage: data.msg,
+                                                smallTail: smallTail[Math.round(Math.random() * (smallTail.length - 1))],
+                                            });
+                                            signLogs.save(function (error, result) {
+                                                if (error) {
+                                                } else {
+                                                }
+                                                const nowDate = new Date();
+                                                const TomorrowDate = new Date();
+                                                TomorrowDate.setDate(nowDate.getDate() + 1);
+                                                TomorrowDate.setHours(0);
+                                                TomorrowDate.setMinutes(0);
+                                                TomorrowDate.setSeconds(0);
+                                                const lastSeconds = parseInt((TomorrowDate.getTime() - nowDate.getTime()) / 1000);
+                                                redisClient.set(`${username}IsLogin`, true, 'ex', lastSeconds);
+                                                self.render({
+                                                    status: 'success',
+                                                    message: data.msg,
+                                                });
+                                            });
+                                        } else {
+                                            fnFailure(data);
+                                        }
+                                    }).catch(fnCatch);
+                                } else {
                                     self.render({
-                                        status: 'success',
-                                        message: data.msg,
+                                        message: '这个账号已经签过了',
                                     });
-                                });
-                            } else {
-                                fnFailure(data);
-                            }
-                        }).catch(fnCatch);
+                                }
+                            });
+                        } else if (power === 'sign-out') { // 签退
+                            ajaxData.type = 'checkout';
+                            axios({
+                                url: url,
+                                headers: {
+                                    'Cookie': cookie,
+                                },
+                                method: 'post',
+                                data: qs.stringify(ajaxData),
+                            }).then(function (axiosData) {
+                                const data = axiosData.data;
+                                if (!data.error) {
+                                    const signLogs = new SignLogs({
+                                        username: username,
+                                        signMessage: data.msg,
+                                        smallTail: smallTail[Math.round(Math.random() * (smallTail.length - 1))],
+                                    });
+                                    signLogs.save(function (error, result) {
+                                        if (error) {
+                                        } else {
+                                        }
+                                        self.render({
+                                            status: 'success',
+                                            message: data.msg,
+                                        });
+                                    });
+                                } else {
+                                    fnFailure(data);
+                                }
+                            }).catch(fnCatch);
+                        } else {
+                            self.render();
+                        }
                     } else {
-                        self.render();
+                        fnFailure(data);
                     }
-                } else {
-                    fnFailure(data);
-                }
+                }, 2000);
             }).catch(fnCatch);
         }
     }
