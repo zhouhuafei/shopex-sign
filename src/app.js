@@ -5,8 +5,6 @@ import store from './vuex/store';
 import tools from './utils/tools';
 import applications from './utils/applications';
 import axios from './api/axios';
-import jsonp from './api/jsonp';
-import Lazyload from './components-dom/g-lazy-load';
 
 // 公共的样式
 require('./scss/commons/common.scss');
@@ -15,8 +13,6 @@ require('./scss/commons/common.scss');
 Vue.prototype.$tools = tools;
 Vue.prototype.$applications = applications;
 Vue.prototype.$axios = axios;
-Vue.prototype.$jsonp = jsonp;
-Vue.prototype.$lazyload = new Lazyload({isInitRender: false});
 
 // 关闭vue的提示
 Vue.config.productionTip = false;
