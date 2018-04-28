@@ -48,10 +48,16 @@ ValidateForm.prototype.validateSave = function () {
     const type = self.validateType.split(' ');
     const hintTxt = self.validateHintTxt.split(' ');
     const value = this.element.value;
+    const inputType = this.element.type;
+    const isPassword = inputType === 'password';
     this.isValidateSuccess = true;// 是否验证成功了
     type.forEach(function (v, i) {
         if (v === 'no-empty' && self.isValidateSuccess) { // 设置了非空验证
-            if (tools.isEmpty(value)) {
+            let isEmpty = tools.isEmpty(value);
+            if (isPassword) {
+                isEmpty = value === ''; // input为password类型的进行特殊处理
+            }
+            if (isEmpty) {
                 self.renderHintAdd({txt: hintTxt[i]});
                 self.isValidateSuccess = false;
             } else {
