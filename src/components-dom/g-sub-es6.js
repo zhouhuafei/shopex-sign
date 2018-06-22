@@ -26,7 +26,7 @@ class Sub extends Super {
             attribute: {
                 className: 'g-sub-type-es6',
                 innerHTML: `
-                    <div class="g-sub-type-es6-text" style="text-align: center;">周华飞爱侯丽杰,侯丽杰爱周华飞sub-es6</div>
+                    <div class="g-sub-type-es6-text" style="text-align: center;">sub-es6</div>
                 `,
             },
         });

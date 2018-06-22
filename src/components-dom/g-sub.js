@@ -20,7 +20,7 @@ Sub.prototype.moduleDomCreate = function () {
         attribute: {
             className: 'g-sub-type',
             innerHTML: `
-                <div class="g-sub-type-text" style="text-align: center;">周华飞爱侯丽杰,侯丽杰爱周华飞sub-es5</div>
+                <div class="g-sub-type-text" style="text-align: center;">sub-es5</div>
             `,
         },
     });
