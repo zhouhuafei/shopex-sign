@@ -96,39 +96,44 @@ class Sub extends Super {
                         return arr.join('; ');
                     };
                     const cookie = getCookie(setCookie);
-                    // 检测该用户是否已经登录了。下面的redis检测是否登录其实是多此一举。
-                    axios({
-                        url: 'http://oa.shopex.cn:89/client.do?method=checkin',
-                        headers: {
-                            'Cookie': cookie,
-                        },
-                        method: 'get',
-                    }).then(function (axiosData) {
-                        if (axiosData.data.isCheckin === '1') { // 已签
-                            self.render({
-                                message: '这个账号已经在别的站点签过了',
-                            });
+                    if (!data.error) {
+                        // 周六周天不可以签
+                        const myDate = new Date();
+                        const day = myDate.getDay();
+                        if (day === 6 || day === 0) {
+                            self.render({message: '周六周天不可以签。'});
                             return;
                         }
-                        if (!data.error) {
-                            // 周六周天不可以签
-                            const myDate = new Date();
-                            const day = myDate.getDay();
-                            if (day === 6 || day === 0) {
-                                self.render({message: '周六周天不可以签。'});
-                                return;
-                            }
-                            const ajaxData = {
-                                method: 'checkin',
-                                latlng: `31.1680${getRandom()},121.4179${getRandom()}`,
-                                // latlng: 31.168043,121.417915
-                                addr: '上海市徐汇区桂林路靠近中核浦原科技园',
-                                sessionkey: data.sessionkey,
-                            };
-                            if (power === 'sign-in') { // 签到
-                                ajaxData.type = 'checkin';
-                                redisClient.get(`${username}IsLogin`, function (error, reply) {
-                                    if (!reply && !error) {
+                        const ajaxData = {
+                            method: 'checkin',
+                            latlng: `31.1680${getRandom()},121.4179${getRandom()}`,
+                            // latlng: 31.168043,121.417915
+                            addr: '上海市徐汇区桂林路靠近中核浦原科技园',
+                            sessionkey: data.sessionkey,
+                        };
+                        if (power === 'sign-in') { // 签到
+                            ajaxData.type = 'checkin';
+                            redisClient.get(`${username}IsLogin`, function (error, reply) {
+                                if (error) {
+                                    self.render({
+                                        message: 'redis查询出现错误',
+                                    });
+                                    return;
+                                }
+                                if (!reply) { // 在当前站点如果没有签过，则去检测在服务端是否签过。
+                                    axios({
+                                        url: 'http://oa.shopex.cn:89/client.do?method=checkin',
+                                        headers: {
+                                            'Cookie': cookie,
+                                        },
+                                        method: 'get',
+                                    }).then(function (axiosData) {
+                                        if (axiosData.data.isCheckin === '1') { // 已签
+                                            self.render({
+                                                message: '这个账号已经在别的站点签过了',
+                                            });
+                                            return;
+                                        }
                                         axios({
                                             url: url,
                                             headers: {
@@ -154,7 +159,7 @@ class Sub extends Super {
                                                     TomorrowDate.setHours(0);
                                                     TomorrowDate.setMinutes(0);
                                                     TomorrowDate.setSeconds(0);
-                                                    const lastSeconds = parseInt((TomorrowDate.getTime() - nowDate.getTime()) / 1000);
+                                                    const lastSeconds = Math.floor((TomorrowDate.getTime() - nowDate.getTime()) / 1000);
                                                     redisClient.set(`${username}IsLogin`, true, 'ex', lastSeconds);
                                                     self.render({
                                                         status: 'success',
@@ -165,49 +170,49 @@ class Sub extends Super {
                                                 fnFailure(data);
                                             }
                                         }).catch(fnCatch);
-                                    } else {
+                                    }).catch(fnCatch);
+                                } else {
+                                    self.render({
+                                        message: '这个账号已经在当前站点签过了',
+                                    });
+                                }
+                            });
+                        } else if (power === 'sign-out') { // 签退
+                            ajaxData.type = 'checkout';
+                            axios({
+                                url: url,
+                                headers: {
+                                    'Cookie': cookie,
+                                },
+                                method: 'post',
+                                data: qs.stringify(ajaxData),
+                            }).then(function (axiosData) {
+                                const data = axiosData.data;
+                                if (!data.error) {
+                                    const signLogs = new SignLogs({
+                                        username: username,
+                                        signMessage: data.msg,
+                                        smallTail: smallTail[Math.round(Math.random() * (smallTail.length - 1))],
+                                    });
+                                    signLogs.save(function (error, result) {
+                                        if (error) {
+                                        } else {
+                                        }
                                         self.render({
-                                            message: '这个账号已经在当前站点签过了',
+                                            status: 'success',
+                                            message: data.msg,
                                         });
-                                    }
-                                });
-                            } else if (power === 'sign-out') { // 签退
-                                ajaxData.type = 'checkout';
-                                axios({
-                                    url: url,
-                                    headers: {
-                                        'Cookie': cookie,
-                                    },
-                                    method: 'post',
-                                    data: qs.stringify(ajaxData),
-                                }).then(function (axiosData) {
-                                    const data = axiosData.data;
-                                    if (!data.error) {
-                                        const signLogs = new SignLogs({
-                                            username: username,
-                                            signMessage: data.msg,
-                                            smallTail: smallTail[Math.round(Math.random() * (smallTail.length - 1))],
-                                        });
-                                        signLogs.save(function (error, result) {
-                                            if (error) {
-                                            } else {
-                                            }
-                                            self.render({
-                                                status: 'success',
-                                                message: data.msg,
-                                            });
-                                        });
-                                    } else {
-                                        fnFailure(data);
-                                    }
-                                }).catch(fnCatch);
-                            } else {
-                                self.render();
-                            }
+                                    });
+                                } else {
+                                    fnFailure(data);
+                                }
+                            }).catch(fnCatch);
                         } else {
-                            fnFailure(data);
+                            self.render();
                         }
-                    });
+                    } else {
+                        fnFailure(data);
+                    }
                 }, 2000);
             }).catch(fnCatch);
         }
