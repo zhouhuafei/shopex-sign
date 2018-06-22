@@ -1,5 +1,7 @@
 const Super = require('../api-super/super');
 
+// client.do?method=checkin 检测是否登录了。数据把cookie带过去即可。
+
 class Sub extends Super {
     init() {
         const self = this;
