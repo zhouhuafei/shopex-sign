@@ -108,104 +108,104 @@ class Sub extends Super {
                             self.render({
                                 message: '这个账号已经在别的站点签过了',
                             });
-                        } else {
-                            if (!data.error) {
-                                // 周六周天不可以签
-                                const myDate = new Date();
-                                const day = myDate.getDay();
-                                if (day === 6 || day === 0) {
-                                    self.render({message: '周六周天不可以签。'});
-                                    return;
-                                }
-                                const ajaxData = {
-                                    method: 'checkin',
-                                    latlng: `31.1680${getRandom()},121.4179${getRandom()}`,
-                                    // latlng: 31.168043,121.417915
-                                    addr: '上海市徐汇区桂林路靠近中核浦原科技园',
-                                    sessionkey: data.sessionkey,
-                                };
-                                if (power === 'sign-in') { // 签到
-                                    ajaxData.type = 'checkin';
-                                    redisClient.get(`${username}IsLogin`, function (error, reply) {
-                                        if (!reply && !error) {
-                                            axios({
-                                                url: url,
-                                                headers: {
-                                                    'Cookie': cookie,
-                                                },
-                                                method: 'post',
-                                                data: qs.stringify(ajaxData),
-                                            }).then(function (axiosData) {
-                                                const data = axiosData.data;
-                                                if (!data.error) {
-                                                    const signLogs = new SignLogs({
-                                                        username: username,
-                                                        signMessage: data.msg,
-                                                        smallTail: smallTail[Math.round(Math.random() * (smallTail.length - 1))],
-                                                    });
-                                                    signLogs.save(function (error, result) {
-                                                        if (error) {
-                                                        } else {
-                                                        }
-                                                        const nowDate = new Date();
-                                                        const TomorrowDate = new Date();
-                                                        TomorrowDate.setDate(nowDate.getDate() + 1);
-                                                        TomorrowDate.setHours(0);
-                                                        TomorrowDate.setMinutes(0);
-                                                        TomorrowDate.setSeconds(0);
-                                                        const lastSeconds = parseInt((TomorrowDate.getTime() - nowDate.getTime()) / 1000);
-                                                        redisClient.set(`${username}IsLogin`, true, 'ex', lastSeconds);
-                                                        self.render({
-                                                            status: 'success',
-                                                            message: data.msg,
-                                                        });
-                                                    });
-                                                } else {
-                                                    fnFailure(data);
-                                                }
-                                            }).catch(fnCatch);
-                                        } else {
-                                            self.render({
-                                                message: '这个账号已经在当前站点签过了',
-                                            });
-                                        }
-                                    });
-                                } else if (power === 'sign-out') { // 签退
-                                    ajaxData.type = 'checkout';
-                                    axios({
-                                        url: url,
-                                        headers: {
-                                            'Cookie': cookie,
-                                        },
-                                        method: 'post',
-                                        data: qs.stringify(ajaxData),
-                                    }).then(function (axiosData) {
-                                        const data = axiosData.data;
-                                        if (!data.error) {
-                                            const signLogs = new SignLogs({
-                                                username: username,
-                                                signMessage: data.msg,
-                                                smallTail: smallTail[Math.round(Math.random() * (smallTail.length - 1))],
-                                            });
-                                            signLogs.save(function (error, result) {
-                                                if (error) {
-                                                } else {
-                                                }
-                                                self.render({
-                                                    status: 'success',
-                                                    message: data.msg,
-                                                });
-                                            });
-                                        } else {
-                                            fnFailure(data);
-                                        }
-                                    }).catch(fnCatch);
-                                } else {
-                                    self.render();
-                                }
-                            } else {
-                                fnFailure(data);
+                            return;
+                        }
+                        if (!data.error) {
+                            // 周六周天不可以签
+                            const myDate = new Date();
+                            const day = myDate.getDay();
+                            if (day === 6 || day === 0) {
+                                self.render({message: '周六周天不可以签。'});
+                                return;
                             }
+                            const ajaxData = {
+                                method: 'checkin',
+                                latlng: `31.1680${getRandom()},121.4179${getRandom()}`,
+                                // latlng: 31.168043,121.417915
+                                addr: '上海市徐汇区桂林路靠近中核浦原科技园',
+                                sessionkey: data.sessionkey,
+                            };
+                            if (power === 'sign-in') { // 签到
+                                ajaxData.type = 'checkin';
+                                redisClient.get(`${username}IsLogin`, function (error, reply) {
+                                    if (!reply && !error) {
+                                        axios({
+                                            url: url,
+                                            headers: {
+                                                'Cookie': cookie,
+                                            },
+                                            method: 'post',
+                                            data: qs.stringify(ajaxData),
+                                        }).then(function (axiosData) {
+                                            const data = axiosData.data;
+                                            if (!data.error) {
+                                                const signLogs = new SignLogs({
+                                                    username: username,
+                                                    signMessage: data.msg,
+                                                    smallTail: smallTail[Math.round(Math.random() * (smallTail.length - 1))],
+                                                });
+                                                signLogs.save(function (error, result) {
+                                                    if (error) {
+                                                    } else {
+                                                    }
+                                                    const nowDate = new Date();
+                                                    const TomorrowDate = new Date();
+                                                    TomorrowDate.setDate(nowDate.getDate() + 1);
+                                                    TomorrowDate.setHours(0);
+                                                    TomorrowDate.setMinutes(0);
+                                                    TomorrowDate.setSeconds(0);
+                                                    const lastSeconds = parseInt((TomorrowDate.getTime() - nowDate.getTime()) / 1000);
+                                                    redisClient.set(`${username}IsLogin`, true, 'ex', lastSeconds);
+                                                    self.render({
+                                                        status: 'success',
+                                                        message: data.msg,
+                                                    });
+                                                });
+                                            } else {
+                                                fnFailure(data);
+                                            }
+                                        }).catch(fnCatch);
+                                    } else {
+                                        self.render({
+                                            message: '这个账号已经在当前站点签过了',
+                                        });
+                                    }
+                                });
+                            } else if (power === 'sign-out') { // 签退
+                                ajaxData.type = 'checkout';
+                                axios({
+                                    url: url,
+                                    headers: {
+                                        'Cookie': cookie,
+                                    },
+                                    method: 'post',
+                                    data: qs.stringify(ajaxData),
+                                }).then(function (axiosData) {
+                                    const data = axiosData.data;
+                                    if (!data.error) {
+                                        const signLogs = new SignLogs({
+                                            username: username,
+                                            signMessage: data.msg,
+                                            smallTail: smallTail[Math.round(Math.random() * (smallTail.length - 1))],
+                                        });
+                                        signLogs.save(function (error, result) {
+                                            if (error) {
+                                            } else {
+                                            }
+                                            self.render({
+                                                status: 'success',
+                                                message: data.msg,
+                                            });
+                                        });
+                                    } else {
+                                        fnFailure(data);
+                                    }
+                                }).catch(fnCatch);
+                            } else {
+                                self.render();
+                            }
+                        } else {
+                            fnFailure(data);
                         }
                     });
                 }, 2000);
