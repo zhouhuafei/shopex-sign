@@ -31,6 +31,7 @@
                 <a class="page-notice-text" href="http://sign.suibianxiexie.top">2. 新网址: http://sign.suibianxiexie.top</a>
                 <div class="page-notice-text">3. 旧网址: {{time}} 失效 你能看到这条公告说明你用的是旧网址</div>
             </template>
+            <div v-else class="page-notice-text">2. 此项目已无实际用途。</div>
         </div>
         <div class="page-sign-loading g-font-color-highlight"></div>
     </div>
