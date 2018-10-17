@@ -7,7 +7,11 @@ const configRedis = config.redis[env];
 
 // redis
 const redis = require('redis');
-const redisClient = redis.createClient(configRedis.port, configRedis.host);
+const redisClient = redis.createClient({
+    host: configRedis.host,
+    port: configRedis.port,
+    db: configRedis.db,
+});
 
 // 连接成功
 redisClient.on('connect', function () {
