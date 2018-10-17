@@ -10,7 +10,7 @@ const redis = require('redis');
 const redisClient = redis.createClient({
     host: configRedis.host,
     port: configRedis.port,
-    db: configRedis.db,
+    db: configRedis.db, // 不同的项目存到不同的库(db number)里，可以防止键的冲突。例如0库的key1键不会和1库的key1键冲突。
 });
 
 // 连接成功
