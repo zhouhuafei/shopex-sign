@@ -31,7 +31,7 @@ Sub.prototype.moduleDomCreate = function () {
 
 // 功能(覆盖超类型)
 Sub.prototype.power = function () {
-    // 功能重写待续...
+    // 功能重写
 };
 
 module.exports = Sub;

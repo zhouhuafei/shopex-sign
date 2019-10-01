@@ -34,7 +34,7 @@ class Sub extends Super {
 
     // 功能重写(覆盖超类型)
     power() {
-        // 功能重写待续...
+        // 功能重写
     }
 }
 
